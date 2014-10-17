@@ -1,0 +1,23 @@
+This file contains an explanation of the INI file and the macros that are
+usable within the INI file for the compiler.
+
+Macros are determined by the system between two hash tags (#)
+A standard macro looks like: #AMACRO#
+
+The macros the INI supports are the following:
+
+#CURDIR# 			- Current working directory
+#PROGRAMFILES# 		- Points to the Program Files directory of the system
+						If you run a 64 bit version and need to point to the
+						32 bit Program files directory, use the 32 bit macro
+#PROGRAMFILES32# 	- The 32 bit Program Files directory. This is really only
+						used for 64 bit users who have applications installed
+						within the 32 bit Program Files directory
+#PROJECTNAME#		- Gets the project's name set by the project settings at the
+						beginning of the INI
+						
+Comments are determined by a # or ; delimiter at the beginning of each line.
+Example:
+
+; This is a comment
+# This is also a comment

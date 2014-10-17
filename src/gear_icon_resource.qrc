@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>gear.png</file>
+        <file>gear.ico</file>
+    </qresource>
+</RCC>

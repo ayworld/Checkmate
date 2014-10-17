@@ -1,0 +1,5 @@
+The source code included with this installation of MD5Sum is only a skeleton source. No Setup environment is provided with this source, and you must configure everything yourself.
+
+As this project has recently been open sourced, you are free to fork the project repo and use that instead.
+
+https://github.com/pazuzu156/MD5Sum
