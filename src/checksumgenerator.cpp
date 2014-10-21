@@ -87,11 +87,12 @@ void ChecksumGenerator::onGenerateButtonClicked()
 
 void ChecksumGenerator::onSaveButtonClicked()
 {
+    QFileInfo fi(f);
     QString fileName =
             QFileDialog::getSaveFileName(
                 this,
                 "Save Hash File",
-                "/",
+                QString("%1%2").arg(fi.filePath().replace(fi.fileName(), ""), fi.fileName().replace("." + fi.suffix(), "")),
                 getFilterOption()
             );
 
@@ -99,10 +100,12 @@ void ChecksumGenerator::onSaveButtonClicked()
     if(file.open(QIODevice::ReadWrite))
     {
         QTextStream stream(&file);
-        stream << ui->leFile->text() << "  " << f;
+        stream << ui->leFile->text() << "  " << fi.fileName();
+        QMessageBox::information(this, "Save Success", QString("The hash has been successfully saved to: %1").arg(fileName));
+        ui->leFile->setText(f);
+        ui->bSave->setEnabled(false);
     }
     file.close();
-    QMessageBox::information(this, "Save Success", QString("The hash has been successfully saved to: %1").arg(fileName));
 }
 
 void ChecksumGenerator::onCalculationPerformed(QString hash)
