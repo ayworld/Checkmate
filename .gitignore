@@ -17,3 +17,4 @@ clog.txt
 compiler.exe
 build-*/
 src/*.user
+updater_src/*.user

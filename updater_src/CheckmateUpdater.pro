@@ -20,8 +20,6 @@ HEADERS  += \
     filedownloader.h \
     updater.h
 
-# FORMS    += dialog.ui
-
 RESOURCES += \
     updater.qrc
 
