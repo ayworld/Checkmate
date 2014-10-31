@@ -13,6 +13,7 @@ namespace compiler
         private List<String> Libs;
         private String Version;
         private String ProjectName;
+        private String UpdaterName;
         
         // For log
         FileStream os;
@@ -31,7 +32,7 @@ namespace compiler
 			// Gotta run some checks to see if compiler can reach
 			// Each tool required.
 			if(findTools())
-				configure();
+				configureUpdater();
 			else
 				Console.Read();
         }
@@ -68,6 +69,7 @@ namespace compiler
             Libs = v.Libs;
             Version = v.Version;
             ProjectName = v.ProjectName;
+            UpdaterName = v.UpdaterName;
 
             Write("Project Name: " + ProjectName);
             Write("Version: " + Version);
@@ -148,15 +150,15 @@ namespace compiler
             }
         }
 
-        private void configure()
+        private void configureUpdater()
         {
-            Write("Configuring project for compiling..");
+            Write("Configuring updater for compiling..");
             var process = new Process
             {
                 StartInfo = new ProcessStartInfo()
                 {
                     FileName = EnVars["QBIN"] + "qmake.exe",
-                    Arguments = "" + EnVars["CURDIR"] + "src\\" + ProjectName + ".pro",
+                    Arguments = EnVars["CMUPRO"],
                     UseShellExecute = false,
                     RedirectStandardOutput = true
                 }
@@ -166,10 +168,65 @@ namespace compiler
             process.Start();
             process.BeginOutputReadLine();
             process.WaitForExit();
-            compile();
+            compileUpdater();
         }
 
-        private void compile()
+        private void compileUpdater()
+        {
+            Write("Compiling updater..\n");
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo()
+                {
+                    FileName = getMakeLocation(),
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true
+                }
+            };
+
+            process.OutputDataReceived += process_OutputDataReceived;
+            process.Start();
+            process.BeginOutputReadLine();
+            process.WaitForExit();
+
+            Write("Copying exe to destination..\n");
+            if (!Directory.Exists(EnVars["MROOT"] + "updates"))
+                Directory.CreateDirectory(EnVars["MROOT"] + "updates");
+
+            File.Copy(
+                EnVars["CURDIR"] + "release\\" + UpdaterName + ".exe",
+                EnVars["MROOT"] + "updates\\" + UpdaterName + ".exe",
+                true
+            );
+
+            Directory.Delete("release", true);
+            Directory.Delete("debug", true);
+
+            configureApplication();
+        }
+
+        private void configureApplication()
+        {
+            Write("Configuring project for compiling..");
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo()
+                {
+                    FileName = EnVars["QBIN"] + "qmake.exe",
+                    Arguments = EnVars["CMPRO"],
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true
+                }
+            };
+
+            process.OutputDataReceived += process_OutputDataReceived;
+            process.Start();
+            process.BeginOutputReadLine();
+            process.WaitForExit();
+            compileApplication();
+        }
+
+        private void compileApplication()
         {
             Write("Compiling project..\n");
             var process = new Process
@@ -231,8 +288,6 @@ namespace compiler
         private void copyUpdate()
         {
             Write("Copyting new executable to update directory for applicaiton update..\n");
-            if (!Directory.Exists(EnVars["MROOT"] + "updates"))
-                Directory.CreateDirectory(EnVars["MROOT"] + "updates");
 
             File.Copy(EnVars["MBIN"] + ProjectName + ".exe", EnVars["MROOT"] + "updates\\" + ProjectName + ".exe", true);
             createInstaller();

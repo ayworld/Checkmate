@@ -48,6 +48,7 @@ private slots:
     void onUpdateCheckActionTriggered();
 
     void onCompleted();
+    void onUpdateComplete();
 
 };
 

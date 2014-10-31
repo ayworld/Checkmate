@@ -17,6 +17,7 @@ To build, you need three different tools:
 2. GnuMake for Win32 (For compiling and generating exe)
 3. Inno Setup (For building installer via iss install script)
 4. MinGW (Contains g++ compiler for Qt project)
+5. Visual Studio 2013+ (Express will do fine. Needed for building compiler)
 
 Internet shortcuts are provided for all four tools, but not the tools themselves.  
 
@@ -29,16 +30,16 @@ You will need several libraries that are included in Qt.
 Follow this structure:
 
 ```
-md5_win32_bin\bin\platforms\qwindows32.dll
-md5_win32_bin\bin\icudt52.dll
-md5_win32_bin\bin\icuin52.dll
-md5_win32_bin\bin\icuuc52.dll
-md5_win32_bin\bin\libgcc_s_dw2-1.dll
-md5_win32_bin\bin\libstdc++-6.dll
-md5_win32_bin\bin\libwinpthread-1.dll
-md5_win32_bin\bin\Qt5Core.dll
-md5_win32_bin\bin\Qt5Gui.dll
-md5_win32_bin\bin\Qt5Widgets.dll
+checkmate_win32_bin\bin\platforms\qwindows32.dll
+checkmate_win32_bin\bin\icudt52.dll
+checkmate_win32_bin\bin\icuin52.dll
+checkmate_win32_bin\bin\icuuc52.dll
+checkmate_win32_bin\bin\libgcc_s_dw2-1.dll
+checkmate_win32_bin\bin\libstdc++-6.dll
+checkmate_win32_bin\bin\libwinpthread-1.dll
+checkmate_win32_bin\bin\Qt5Core.dll
+checkmate_win32_bin\bin\Qt5Gui.dll
+checkmate_win32_bin\bin\Qt5Widgets.dll
 ```
 
 This will allow the compiler to successfully build the installer  

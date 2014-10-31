@@ -35,6 +35,12 @@ namespace compiler
             private set;
         }
 
+        public String UpdaterName
+        {
+            get;
+            private set;
+        }
+
         public Vars(String file)
         {
             this.EnVars = new Dictionary<String, String>();
@@ -115,11 +121,20 @@ namespace compiler
                                 mingwdir + ";" + path,
                                 EnvironmentVariableTarget.Process);
                             break;
+                        case "CMPRO":
+                            EnVars.Add("CMPRO", str);
+                            break;
+                        case "CMUPRO":
+                            EnVars.Add("CMUPRO", str);
+                            break;
                         case "Version":
                             this.Version = str.Split('\\')[0];
                             break;
                         case "Name":
                             this.ProjectName = str.Split('\\')[0];
+                            break;
+                        case "UpdaterName":
+                            this.UpdaterName = str.Split('\\')[0];
                             break;
                     }
                 }
@@ -148,6 +163,9 @@ namespace compiler
                         break;
                     case "PROJECTNAME":
                         macro = p[1].Replace("PROJECTNAME", ProjectName) + p[2];
+                        break;
+                    case "UPDATERNAME":
+                        macro = p[1].Replace("UPDATERNAME", UpdaterName) + p[2];
                         break;
                 }
             }

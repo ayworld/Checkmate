@@ -94,5 +94,7 @@ Name: "{commondesktop}\{#AppName}"; Filename: "{app}\{#AppName}.exe"; Tasks: des
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#AppName}"; Filename: "{app}\{#AppName}.exe"; Tasks: quicklaunchicon
 
 [Run]
+;; Change folder permissions so Checkmate can remove update files
+Filename: "{sys}\icacls.exe"; Description: "Folder Permissions"; StatusMsg: "Changing Directory Permissions"; Parameters: """{app}"" /grant Users:F"; Flags: shellexec waituntilterminated 
 Filename: "{app}\{#AppName}"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 

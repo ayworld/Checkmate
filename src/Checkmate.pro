@@ -17,14 +17,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     validationthread.cpp \
     aboutdialog.cpp \
-    filedownloader.cpp \
-    checksumgenerator.cpp
+    checksumgenerator.cpp \
+    filedownloader.cpp
 
 HEADERS  += mainwindow.h \
     validationthread.h \
     aboutdialog.h \
-    filedownloader.h \
-    checksumgenerator.h
+    checksumgenerator.h \
+    filedownloader.h
 
 FORMS    += mainwindow.ui \
     aboutdialog.ui \

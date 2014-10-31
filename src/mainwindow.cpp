@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->establishUIConnections();
     this->working = false;
-    this->lVersion = 7; // Important! This is the version checker!!!!!!!
-    this->version = "2.0.1";
+    this->lVersion = 8; // Important! This is the version checker!!!!!!!
+    this->version = "2.1";
     this->gversion = "2.1";
 }
 
@@ -207,28 +207,62 @@ void MainWindow::onAboutActionTriggered()
 
 void MainWindow::onUpdateCheckActionTriggered()
 {
-    QUrl url("http://cdn.kalebklein.com/chm/version.txt");
-    downloader = new FileDownloader(url, this);
+    downloader = new FileDownloader(this);
+    downloader->setTitle("Check for Updates");
+    downloader->setLabelText("Checking for updates, please wait...             ");
+    downloader->setMarqueBar(true);
+    downloader->setURL("http://cdn.kalebklein.com/chm/version.txt");
 
-    connect(downloader, SIGNAL(downloaded()), SLOT(onCompleted()));
+    connect(downloader, SIGNAL(downloadFinished()), this, SLOT(onCompleted()));
+
+    downloader->begin();
 }
 
 void MainWindow::onCompleted()
 {
-    int wVersion = QString(downloader->downloadedData()).toInt();
+    delete downloader;
+    QFile file("version.txt");
+    if(!file.open(QIODevice::ReadOnly)) return;
+    QTextStream stream(&file);
+    QStringList lines;
+    while(!stream.atEnd())
+    {
+        lines.append(stream.readLine());
+    }
+    file.close();
+
+    int wVersion = QString(lines[0]).toInt();
     if(lVersion < wVersion)
     {
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "New Update Available", "An update is now available, would you like to download the update?", QMessageBox::Yes|QMessageBox::No);
         if(reply == QMessageBox::Yes)
         {
-            QDesktopServices::openUrl(QString("http://www.kalebklein.com/applications/checkmate"));
+            //QDesktopServices::openUrl(QString("http://www.kalebklein.com/applications/checkmate"));
+            downloader = new FileDownloader(this);
+            downloader->setTitle("Downloading Update");
+            downloader->setLabelText("Downloading and updating Checkmate, please wait...");
+            downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
+
+            connect(downloader, SIGNAL(downloadFinished()), this, SLOT(onUpdateComplete()));
+
+            downloader->begin();
         }
     }
     else
     {
         QMessageBox::information(this, "Check for Updates", "You are currently up to date!");
     }
+    file.remove();
+}
+
+void MainWindow::onUpdateComplete()
+{
+    QString program = "CheckmateUpdater.exe";
+    QStringList args;
+
+    QProcess::execute(program, args);
+    qApp->quit();
 }
 
 // Used from actionExit to trigger closeEvent()
