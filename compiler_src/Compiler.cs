@@ -153,21 +153,24 @@ namespace compiler
         private void configureUpdater()
         {
             // Delete any files that may have been left behind (If Ctrl+C'd out or crashed)
-            string[] files = Directory.GetFiles(EnVars["CURDIR"]);
-            foreach (string file in files)
+            if(Directory.Exists("release"))
             {
-                if (file.Contains("Makefile")
-                    || file.Contains("object_script")
-                    || file.Contains("ui_"))
+                string[] files = Directory.GetFiles(EnVars["CURDIR"]);
+                foreach (string file in files)
                 {
-                    writer.WriteLine("Deleting file: " + file);
-                    writer.Flush();
-                    File.Delete(Path.Combine(EnVars["CURDIR"], file));
+                    if (file.Contains("Makefile")
+                        || file.Contains("object_script")
+                        || file.Contains("ui_"))
+                    {
+                        writer.WriteLine("Deleting file: " + file);
+                        writer.Flush();
+                        File.Delete(Path.Combine(EnVars["CURDIR"], file));
+                    }
                 }
-            }
 
-            Directory.Delete(EnVars["CURDIR"] + "release", true);
-            Directory.Delete(EnVars["CURDIR"] + "debug", true);
+                Directory.Delete(EnVars["CURDIR"] + "release", true);
+                Directory.Delete(EnVars["CURDIR"] + "debug", true);
+            }
 
             Write("Configuring updater for compiling..");
             var process = new Process
