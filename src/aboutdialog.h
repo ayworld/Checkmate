@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QRect>
 #include <QDesktopWidget>
+#include <QDesktopServices>
+#include <QtCore>
 
 namespace Ui {
 class AboutDialog;
@@ -21,6 +23,7 @@ public:
 
 private slots:
     void onCloseButtonClicked();
+    void onSiteButtonClicked();
 
 private:
     Ui::AboutDialog *ui;

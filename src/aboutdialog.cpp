@@ -10,8 +10,9 @@ AboutDialog::AboutDialog(QWidget *parent) :
     position.moveCenter(QDesktopWidget().availableGeometry().center());
     move(position.topLeft());
 
-    // Close button connection
+    // button connections
     connect(ui->bClose, SIGNAL(clicked()), this, SLOT(onCloseButtonClicked()));
+    connect(ui->bSite, SIGNAL(clicked()), this, SLOT(onSiteButtonClicked()));
 }
 
 AboutDialog::~AboutDialog()
@@ -22,6 +23,11 @@ AboutDialog::~AboutDialog()
 void AboutDialog::onCloseButtonClicked()
 {
     this->close();
+}
+
+void AboutDialog::onSiteButtonClicked()
+{
+    QDesktopServices::openUrl(QString("http://www.kalebklein.com/applications/checkmate"));
 }
 
 void AboutDialog::setAppVersion(QString version)
