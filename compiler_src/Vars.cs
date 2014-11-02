@@ -29,6 +29,12 @@ namespace compiler
             private set;
         }
 
+        public String VersionCode
+        {
+            get;
+            private set;
+        }
+
         public String ProjectName
         {
             get;
@@ -129,6 +135,9 @@ namespace compiler
                             break;
                         case "Version":
                             this.Version = str.Split('\\')[0];
+                            break;
+                        case "VersionCode":
+                            this.VersionCode = str.Split('\\')[0];
                             break;
                         case "Name":
                             this.ProjectName = str.Split('\\')[0];

@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->establishUIConnections();
     this->working = false;
-    this->lVersion = 9; // Important! This is the version checker!!!!!!!
-    this->version = "2.1";
+    this->lVersion = 11; // Important! This is the version checker!!!!!!!
+    this->version = "2.1.1";
     this->gversion = "2.1";
 }
 
@@ -233,7 +233,7 @@ void MainWindow::onCompleted()
     file.close();
 
     int wVersion = QString(lines[0]).toInt();
-    if(lVersion < wVersion)
+    if(lVersion < wVersion) // Change back to < when done testing
     {
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "New Update Available", "An update is now available, would you like to download the update?", QMessageBox::Yes|QMessageBox::No);
@@ -262,7 +262,8 @@ void MainWindow::onUpdateComplete()
     QString program = "CheckmateUpdater.exe";
     QStringList args;
 
-    QProcess::execute(program, args);
+    QProcess *p = new QProcess(this);
+    p->startDetached(program, args);
     qApp->quit();
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace compiler
@@ -12,6 +13,7 @@ namespace compiler
         private Dictionary<String, String> EnVars;
         private List<String> Libs;
         private String Version;
+        private String VersionCode;
         private String ProjectName;
         private String UpdaterName;
         
@@ -70,6 +72,7 @@ namespace compiler
             Version = v.Version;
             ProjectName = v.ProjectName;
             UpdaterName = v.UpdaterName;
+            VersionCode = v.VersionCode;
 
             Write("Project Name: " + ProjectName);
             Write("Version: " + Version);
@@ -301,7 +304,6 @@ namespace compiler
                 }
             }
             Write("");
-            //createInstaller();
             copyUpdate();
         }
 
@@ -357,6 +359,11 @@ namespace compiler
             Directory.Delete(EnVars["CURDIR"] + "release", true);
             Directory.Delete(EnVars["CURDIR"] + "debug", true);
 
+            finishUp();
+        }
+        
+        private void finishUp()
+        {
             watch.Stop();
 
             int second = (int)watch.ElapsedMilliseconds / 1000;
