@@ -22,6 +22,7 @@ public:
 
 signals:
     void downloadFinished();
+    void connectionFailed();
 
 public slots:
     void httpReadyRead();
@@ -39,6 +40,7 @@ private:
     bool httpRequestAborted;
     qint64 fileSize;
     bool silent, del;
+
 };
 
 #endif // FILEDOWNLOADER_H

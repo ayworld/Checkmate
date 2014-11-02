@@ -214,6 +214,7 @@ void MainWindow::onUpdateCheckActionTriggered()
     downloader->setURL("http://cdn.kalebklein.com/chm/version.txt");
 
     connect(downloader, SIGNAL(downloadFinished()), this, SLOT(onCompleted()));
+    connect(downloader, SIGNAL(connectionFailed()), this, SLOT(onConnectFailed()));
 
     downloader->begin();
 }
@@ -263,6 +264,11 @@ void MainWindow::onUpdateComplete()
 
     QProcess::execute(program, args);
     qApp->quit();
+}
+
+void MainWindow::onConnectFailed()
+{
+    QMessageBox::information(this, "Connection Error", "An internet connection is required to check for updates.");
 }
 
 // Used from actionExit to trigger closeEvent()

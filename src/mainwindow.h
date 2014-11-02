@@ -49,6 +49,7 @@ private slots:
 
     void onCompleted();
     void onUpdateComplete();
+    void onConnectFailed();
 
 };
 

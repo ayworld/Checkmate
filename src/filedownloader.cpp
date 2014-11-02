@@ -65,7 +65,11 @@ void FileDownloader::httpDownloadFinished()
     file->close();
 
     QVariant redirecTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
-    if(reply->error())
+    if(reply->error() == QNetworkReply::HostNotFoundError)
+    {
+        emit connectionFailed();
+    }
+    else if(reply->error())
     {
         file->remove();
         QMessageBox::critical(0, "HTTP", tr("Download failed: %1.").arg(reply->errorString()));
