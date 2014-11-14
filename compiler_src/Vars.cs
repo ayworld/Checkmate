@@ -69,11 +69,6 @@ namespace compiler
             reader.Close();
             file.Close();
 
-            foreach(string item in EnVars.Keys)
-            {
-                Console.WriteLine(item + ": " + EnVars[item]);
-            }
-
             Console.WriteLine();
         }
 

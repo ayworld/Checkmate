@@ -43,32 +43,56 @@ Source: "bin\platforms\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignorev
 ; Source
 ; ================
 
+
+;;;;;;;;;;;;; Checkmate Source ;;;;;;;;;;;;;;
+
 ; about dialog
-Source: "..\src\aboutdialog.cpp"; DestDir: "{app}\src"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: src
-Source: "..\src\aboutdialog.h"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\aboutdialog.ui"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
+Source: "..\src\aboutdialog.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: src
+Source: "..\src\aboutdialog.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\aboutdialog.ui"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 
 ; checksum generator
-Source: "..\src\checksumgenerator.cpp"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\checksumgenerator.h"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\checksumgenerator.ui"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
+Source: "..\src\checksumgenerator.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\checksumgenerator.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\checksumgenerator.ui"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 
 ; main window
-Source: "..\src\mainwindow.cpp"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\mainwindow.h"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\mainwindow.ui"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
+Source: "..\src\mainwindow.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\mainwindow.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\mainwindow.ui"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 
 ; validation thread
-Source: "..\src\validationthread.cpp"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\validationthread.h"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
+Source: "..\src\validationthread.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\validationthread.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+
+; Downloader
+Source: "..\src\filedownloader.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\filedownloader.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 
 ; Extras
-Source: "..\src\main.cpp"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\gear.png"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\gear.ico"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\gear_icon_resource.qrc"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\icon.rc"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
-Source: "..\src\{#AppName}.pro"; DestDir: "{app}\src"; Flags: ignoreversion; Components: src
+Source: "..\src\main.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\gear.png"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\gear.ico"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\gear_icon_resource.qrc"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\icon.rc"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\{#AppName}.pro"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+
+;;;;;;;;;;;;; Checkmate Updater Source ;;;;;;;;;;;;;;
+
+; Update dialog
+Source: "..\updater_src\updater.cpp"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+Source: "..\updater_src\updater.h"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+
+; File downloader
+Source: "..\updater_src\filedownloader.cpp"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+Source: "..\updater_src\filedownloader.h"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+
+; Extras
+Source: "..\updater_src\main.cpp"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+Source: "..\updater_src\updater.qrc"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+Source: "..\updater_src\updater.rc"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+Source: "..\updater_src\{#AppName}Updater.pro"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+Source: "..\updater_src\{#AppName}Updater.exe.manifest"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
 
 ; Rest of stuff
 Source: "bin\source.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: src

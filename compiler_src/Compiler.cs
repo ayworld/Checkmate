@@ -77,6 +77,12 @@ namespace compiler
             Write("Project Name: " + ProjectName);
             Write("Version: " + Version);
 
+            Write("\nSetting up environemt variables...");
+            foreach(String ev in EnVars.Keys)
+            {
+                Write(String.Format("Setting {0} = {1}", ev, EnVars[ev]));
+            }
+
             Write("\nBegining compilation of " + ProjectName + "\n");
             Write("Setting up environment for build\n");
         }
