@@ -19,7 +19,12 @@ void Updater::beginDownload()
     downloader = new FileDownloader();
     downloader->setTitle("Updating Checkmate");
     downloader->setLabelText("Updating, please wait...");
-    downloader->setURL("http://cdn.kalebklein.com/chm/updates/Checkmate.exe");
+
+    #ifdef QT_DEBUG
+        downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/Checkmate.exe");
+    #else
+        downloader->setURL("http://cdn.kalebklein.com/chm/updates/Checkmate.exe");
+    #endif
 
     connect(downloader, SIGNAL(downloadFinished()), this, SLOT(updateComplete()));
 

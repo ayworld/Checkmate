@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->establishUIConnections();
     this->working = false;
-    this->lVersion = 12; // Important! This is the version checker!!!!!!!
-    this->version = "2.1.1";
+    this->lVersion = 13; // Important! This is the version checker!!!!!!!
+    this->version = "2.1.2";
     this->gversion = "2.1";
 }
 
@@ -211,7 +211,12 @@ void MainWindow::onUpdateCheckActionTriggered()
     downloader->setTitle("Check for Updates");
     downloader->setLabelText("Checking for updates, please wait...             ");
     downloader->setMarqueBar(true);
-    downloader->setURL("http://cdn.kalebklein.com/chm/version.txt");
+
+    #ifdef QT_DEBUG
+        downloader->setURL("http://cdn.kalebklein.com/debug/chm/version.txt");
+    #else
+        downloader->setURL("http://cdn.kalebklein.com/chm/version.txt");
+    #endif
 
     connect(downloader, SIGNAL(downloadFinished()), this, SLOT(onCompleted()));
     connect(downloader, SIGNAL(connectionFailed()), this, SLOT(onConnectFailed()));
@@ -236,14 +241,20 @@ void MainWindow::onCompleted()
     if(lVersion < wVersion) // Change back to < when done testing
     {
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "New Update Available", "An update is now available, would you like to download the update?", QMessageBox::Yes|QMessageBox::No);
+        QString upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2").arg(this->version).arg(lines[1]);
+        reply = QMessageBox::question(this, "New Update Available", upd, QMessageBox::Yes|QMessageBox::No);
         if(reply == QMessageBox::Yes)
         {
             //QDesktopServices::openUrl(QString("http://www.kalebklein.com/applications/checkmate"));
             downloader = new FileDownloader(this);
             downloader->setTitle("Downloading Update");
             downloader->setLabelText("Downloading and updating Checkmate, please wait...");
-            downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
+
+            #ifdef QT_DEBUG
+                downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/CheckmateUpdater.exe");
+            #else
+                downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
+            #endif
 
             connect(downloader, SIGNAL(downloadFinished()), this, SLOT(onUpdateComplete()));
 
