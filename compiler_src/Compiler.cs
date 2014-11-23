@@ -77,7 +77,7 @@ namespace compiler
             Write("Project Name: " + ProjectName);
             Write("Version: " + Version);
 
-            Write("\nSetting up environemt variables...");
+            Write("\nSetting up environment variables...");
             foreach(String ev in EnVars.Keys)
             {
                 Write(String.Format("Setting {0} = {1}", ev, EnVars[ev]));
