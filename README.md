@@ -31,9 +31,9 @@ Follow this structure:
 
 ```
 checkmate_win32_bin\bin\platforms\qwindows32.dll
-checkmate_win32_bin\bin\icudt52.dll
-checkmate_win32_bin\bin\icuin52.dll
-checkmate_win32_bin\bin\icuuc52.dll
+checkmate_win32_bin\bin\icudt53.dll
+checkmate_win32_bin\bin\icuin53.dll
+checkmate_win32_bin\bin\icuuc53.dll
 checkmate_win32_bin\bin\libgcc_s_dw2-1.dll
 checkmate_win32_bin\bin\libstdc++-6.dll
 checkmate_win32_bin\bin\libwinpthread-1.dll
