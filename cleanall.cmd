@@ -2,6 +2,8 @@
 del compiler.exe
 del compile_log.txt
 del clog.txt
+rmdir /S /Q build-Checkmate-Desktop_Qt_5_4_1_MinGW_32bit-Debug
+rmdir /S /Q build-Checkmate-Desktop_Qt_5_4_1_MinGW_32bit-Release
 cd compiler_src
 rmdir /S /Q bin
 rmdir /S /Q obj
