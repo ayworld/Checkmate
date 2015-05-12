@@ -100,9 +100,9 @@ Source: "bin\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion; Compon
 Source: "bin\libstdc++-6.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\libwinpthread-1.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\gear.ico"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-;Source: "bin\icudt52.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-;Source: "bin\icuin52.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-;Source: "bin\icuuc52.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
+Source: "bin\icudt53.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
+Source: "bin\icuin53.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
+Source: "bin\icuuc53.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\license.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\{#AppName}.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app

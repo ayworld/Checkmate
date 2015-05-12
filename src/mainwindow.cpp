@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->establishUIConnections();
     this->working = false;
-    this->lVersion = 13; // Important! This is the version checker!!!!!!!
-    this->version = "2.1.2";
+    this->lVersion = 14; // Important! This is the version checker!!!!!!!
+    this->version = "2.1.3";
     this->gversion = "2.1";
 }
 

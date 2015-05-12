@@ -27,7 +27,7 @@ void AboutDialog::onCloseButtonClicked()
 
 void AboutDialog::onSiteButtonClicked()
 {
-    QDesktopServices::openUrl(QString("http://www.kalebklein.com/applications/checkmate"));
+    QDesktopServices::openUrl(QString("http://kalebklein.com/portfolio/post/checkmate"));
 }
 
 void AboutDialog::setAppVersion(QString version)

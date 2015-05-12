@@ -11,9 +11,9 @@ cd ../checkmate_win32_bin
 rmdir /S /Q updates
 rmdir /S /Q release
 cd bin
-del icudt52.dll
-del icuin52.dll
-del icuuc52.dll
+del icudt53.dll
+del icuin53.dll
+del icuuc53.dll
 del libgcc_s_dw2-1.dll
 del libstdc++-6.dll
 del libwinpthread-1.dll
@@ -25,4 +25,3 @@ cd platforms
 del qwindows.dll
 cd ../../../
 echo done
-pause
