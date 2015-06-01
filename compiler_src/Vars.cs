@@ -11,13 +11,41 @@ namespace compiler
     {
         private String file;
 
-        // Environment Variables
-        public Dictionary<string, string> EnVars { get; private set; }
-        public List<string> Libs { get; private set; }
-        public string Version { get; private set; }
-        public string VersionCode { get; private set; }
-        public string ProjectName { get; private set; }
-        public string UpdaterName { get; private set; }
+        public Dictionary<String, String> EnVars
+        {
+            get;
+            private set;
+        }
+
+        public List<String> Libs
+        {
+            get;
+            private set;
+        }
+
+        public String Version
+        {
+            get;
+            private set;
+        }
+
+        public String VersionCode
+        {
+            get;
+            private set;
+        }
+
+        public String ProjectName
+        {
+            get;
+            private set;
+        }
+
+        public String UpdaterName
+        {
+            get;
+            private set;
+        }
 
         public Vars(String file)
         {
@@ -52,11 +80,8 @@ namespace compiler
             {
                 if(line.EndsWith(".dll"))
                 {
-                    if(!line.StartsWith("#"))
-                    {
-                        // For adding libraries to List for copying later
-                        Libs.Add(line);
-                    }
+                    // For adding libraries to List for copying later
+                    Libs.Add(line);
                 }
                 else if(line.Contains("="))
                 {

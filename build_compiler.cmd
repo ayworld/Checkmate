@@ -19,12 +19,21 @@ echo.
 echo ------------------------------------------------------
 echo Compile finished...
 echo A log has also been written with full details on compilation
+if "%1"=="/compile" (
+    goto compile
+) else (
+    goto exit
+)
 pause
-goto exit
+
+:compile
+compiler.exe
+if errorlevel 1 goto build-error
+exit
 
 :build-error
 echo failed to compile
-pause
-exit
 
 :exit
+pause
+exit

@@ -59,6 +59,7 @@ void ChecksumGenerator::onBrowseButtonClicked()
     if(!fileName.isEmpty())
     {
         ui->leFile->setText(fileName.replace("/", "\\")); // WIN32 hack
+        ui->bSave->setEnabled(false);
     }
 }
 

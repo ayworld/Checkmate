@@ -25,3 +25,4 @@ cd platforms
 del qwindows.dll
 cd ../../../
 echo done
+pause
