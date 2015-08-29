@@ -1,5 +1,6 @@
 #define Publisher "Kaleb Klein"
 #define AppURL "http://www.kalebklein.com/applications/checkmate"
+#define VCLStylesSkinPath "{localappdata}\VCLStylesSkin"
 
 [Setup]
 AppId={{59F5B31A-8CCF-4541-AB31-F200C18AC3FC}
@@ -34,6 +35,37 @@ Name: "src"; Description: "Include Source Code"; Types: source
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
+
+[Code]
+// Import the LoadVCLStyle function from VclStylesInno.DLL
+procedure LoadVCLStyle(VClStyleFile: String); external 'LoadVCLStyleW@files:VclStylesInno.dll stdcall setuponly';
+procedure LoadVCLStyle_UnInstall(VClStyleFile: String); external 'LoadVCLStyleW@{#VCLStylesSkinPath}\VclStylesInno.dll stdcall uninstallonly';
+// Import the UnLoadVCLStyles function from VclStylesInno.DLL
+procedure UnLoadVCLStyles; external 'UnLoadVCLStyles@files:VclStylesInno.dll stdcall setuponly';
+procedure UnLoadVCLStyles_UnInstall; external 'UnLoadVCLStyles@{#VCLStylesSkinPath}\VclStylesInno.dll stdcall uninstallonly';
+
+function InitializeSetup(): Boolean;
+begin
+ ExtractTemporaryFile('Amakrits.vsf');
+ LoadVCLStyle(ExpandConstant('{tmp}\Amakrits.vsf'));
+ Result := True;
+end;
+
+procedure DeinitializeSetup();
+begin
+    UnLoadVCLStyles;
+end;
+
+function InitializeUninstall: Boolean;
+begin
+  Result := True;
+  LoadVCLStyle_UnInstall(ExpandConstant('{#VCLStylesSkinPath}\Amakrits.vsf'));
+end;
+
+procedure DeinitializeUninstall();
+begin
+  UnLoadVCLStyles_UnInstall;
+end;
 
 [Files]
 Source: "bin\{#AppName}.exe"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: app
@@ -93,6 +125,10 @@ Source: "..\updater_src\updater.qrc"; DestDir: "{app}\src\CheckmateUpdater"; Fla
 Source: "..\updater_src\updater.rc"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
 Source: "..\updater_src\{#AppName}Updater.pro"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
 Source: "..\updater_src\{#AppName}Updater.exe.manifest"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+
+; Styles
+Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\VclStylesinno.dll"; DestDir: {#VCLStylesSkinPath};
+Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\Styles\Amakrits.vsf"; DestDir: {#VCLStylesSkinPath};
 
 ; Rest of stuff
 Source: "bin\source.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: src

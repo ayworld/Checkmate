@@ -1,56 +1,44 @@
 # Checkmate
 The readme file for Checkmate and build instructions
 
-## Table of Contents
-* [Getting tools](#gettings-tools)
-* [Libs You Need](#libs-you-need)
-* [Compiler](#compiler)
-* [Contributors](#contributors)
+## Windows Build
+There are 2 things you will need to build Checkmate on Windows.  
+1. [GnuWin32 - Make for Windows][1]
+2. [Qt 5.4][2]
 
-## Getting Tools
+Checkmate is built with MinGW, so you need to install the MinGW package for Qt. The installer will give you that option. Qt v5.4 is required to compile Checkmate. 5.5 is out, but it's not using 5.5, so just use 5.4.
 
-Checkmate is built using MinGW32 compiler from Qt via QMAKE. Please be sure you have that package of Qt installed onto the system before attempting to compile Checkmate.
+To compile, make sure MAKE is in your PATH, or just reference to it when executing the command.
 
-To build, you need three different tools:
+```/> make -f Makefile.win```
 
-1. Qt - Compiler and IDE (For programming and graphical UI building)
-2. GnuMake for Win32 (For compiling and generating exe)
-3. Inno Setup (For building installer via iss install script)
-4. MinGW (Contains g++ compiler for Qt project)
-5. Visual Studio 2013+ (Express will do fine. Needed for building compiler)
+To clean up the entire build process AND installer run:
 
-Internet shortcuts are provided for all four tools, but not the tools themselves.  
+```/> make -f Makefile.win clean```
 
-compiler.exe will use GnuMake if you've installed it onto your system. If it cannot be found via compiler.ini, then it will default to the current directory the compiler is run in.
+## Linux Build
+To build in Linux, the Qt libraries are required. If you have the option to install modules sepearately, the two you will need are:
+1. Qt5-Base
+2. Qt5-Webkit
 
-It's simple, install Qt, install Inno Setup, install GnuMake, and lastly, install VS 2013 (Express Edition will do fine), run build_compiler.cmd then run compiler.exe
+To compile checkmate, be sure that you have the build tools for your specific distribution, that includes make and g++
 
-## Libs You Need
-You will need several libraries that are included in Qt.  
-Follow this structure:
+Compile:
+```$ make -f Makefile.nix```
 
-```
-checkmate_win32_bin\bin\platforms\qwindows32.dll
-checkmate_win32_bin\bin\icudt53.dll
-checkmate_win32_bin\bin\icuin53.dll
-checkmate_win32_bin\bin\icuuc53.dll
-checkmate_win32_bin\bin\libgcc_s_dw2-1.dll
-checkmate_win32_bin\bin\libstdc++-6.dll
-checkmate_win32_bin\bin\libwinpthread-1.dll
-checkmate_win32_bin\bin\Qt5Core.dll
-checkmate_win32_bin\bin\Qt5Gui.dll
-checkmate_win32_bin\bin\Qt5Widgets.dll
-```
+Clean up build process
+```$ make -f Makefile.nix clean```
 
-This will allow the compiler to successfully build the installer  
-The compiler will pull all of these for you straight from the Qt directory you have setup in your compiler.ini config file
+Linux also has 2 other commands for the makefile, install and uninstall. Both require root, so be sure to run the install/uninstall commands as root
 
-## Compiler
-As of build tool v3, codenamed "compiler", everything is done with just opening compiler.exe. You may need to configure compiler.ini, so look at ini.txt for instructions on how the ini configuration file works for the compiler.
+Install:
+```$ make -f Makefile.nix && sudo make -f Makefile.nix install```
 
-Make sure both Qt and Inno Setup are installed on the system. If you installed them in a different directory, edit compiler.ini to reflect those locations.
-
-GnuMake is also read if you have it pasted in the project's root directory, so you don't have to install it. Just make sure the compiler can see it in the root directory or you point to it through compiler.ini
+Uninstall:
+```$ make -f Makefile.nix uninstall```
 
 ## Contributors
 [Pazuzu156](https://github.com/pazuzu156)
+
+[1]:http://gnuwin32.sourceforge.net/packages/make.htm
+[2]:http://www.qt.io/
