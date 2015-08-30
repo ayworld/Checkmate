@@ -37,8 +37,14 @@ Install:
 Uninstall:
 ```$ make -f Makefile.nix uninstall```
 
+## Distro Install
+### Arch
+
+Checkmate is in the Arch User Repository under [checkmate-git][3]
+
 ## Contributors
 [Pazuzu156](https://github.com/pazuzu156)
 
 [1]:http://gnuwin32.sourceforge.net/packages/make.htm
 [2]:http://www.qt.io/
+[3]:https://aur.archlinux.org/packages/checkmate-git/
