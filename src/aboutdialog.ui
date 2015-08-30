@@ -34,11 +34,11 @@
      <x>180</x>
      <y>20</y>
      <width>231</width>
-     <height>71</height>
+     <height>61</height>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A simple and easy to use checksum validator built in C++. A simple checksum generator is also included with this app.&lt;/p&gt;&lt;p&gt;© 2014 Kaleb Klein. All Rights Reserved.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A simple and easy to use checksum validator built in C++. A simple checksum generator is also included with this app.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="wordWrap">
     <bool>true</bool>
@@ -121,14 +121,30 @@ background-color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="bSite">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>254</x>
      <y>270</y>
-     <width>75</width>
+     <width>91</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
     <string>View Website</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>70</y>
+     <width>231</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;© 2014 Kaleb Klein. All Rights Reserved.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

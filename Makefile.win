@@ -13,7 +13,11 @@ MAKE=$(PF)\GnuWin32\bin\make.exe
 ISS=$(PF)\Inno Setup 5\iscc.exe
 ISSFLAGS=/ocheckmate_win32_bin\release /dSetupName=checkmate /dVersion=$(VERSION) /dAppName=Checkmate
 
+# Entire build process
 all: updater app installer
+
+# Entire build process minus the installer
+bins: updater app copy_dlls copy_binaries
 
 updater:
 	$(QMAKE) $(HOME)\updater_src\CheckmateUpdater.pro -o $(HOME)\updater_src\Makefile
