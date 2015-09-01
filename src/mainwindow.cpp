@@ -14,9 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->establishUIConnections();
     this->working = false;
-    this->lVersion = 15; // Important! This is the version checker!!!!!!!
-    this->version = "2.1.4";
-    this->gversion = "2.1.1";
+    this->lVersion = 16; // Important! This is the version checker!!!!!!!
+    this->version = "2.1.5";
+    this->gversion = "2.1.2";
 }
 
 MainWindow::~MainWindow()
@@ -38,6 +38,10 @@ void MainWindow::establishUIConnections()
 
     // Connect validate button
     connect(ui->bValidate, SIGNAL(clicked()), this, SLOT(onValidateButtonClicked()));
+
+#ifdef Q_OS_UNIX
+    ui->actionUpdates->setVisible(false);
+#endif
 }
 
 void MainWindow::setHashType(QString ext)
@@ -241,7 +245,12 @@ void MainWindow::onCompleted()
     if(lVersion < wVersion) // Change back to < when done testing
     {
         QMessageBox::StandardButton reply;
-        QString upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2").arg(this->version).arg(lines[1]);
+        QString upd = "";
+#if Q_OS_WIN32
+        upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2").arg(this->version).arg(lines[1]);
+#else
+        upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2\n\nPlease make sure you're running Checkmate under super user (root)").arg(this->version).arg(lines[1]);
+#endif
         reply = QMessageBox::question(this, "New Update Available", upd, QMessageBox::Yes|QMessageBox::No);
         if(reply == QMessageBox::Yes)
         {
@@ -251,9 +260,17 @@ void MainWindow::onCompleted()
             downloader->setLabelText("Downloading and updating Checkmate, please wait...");
 
             #ifdef QT_DEBUG
-                downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/CheckmateUpdater.exe");
+                #if Q_OS_WIN32
+                    downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/CheckmateUpdater.exe");
+                #else
+                    downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/CheckmateUpdater");
+                #endif
             #else
-                downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
+                #if Q_OS_WIN32
+                    downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
+                #else
+                    downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater");
+                #endif
             #endif
 
             connect(downloader, SIGNAL(downloadFinished()), this, SLOT(onUpdateComplete()));
@@ -270,7 +287,12 @@ void MainWindow::onCompleted()
 
 void MainWindow::onUpdateComplete()
 {
-    QString program = "CheckmateUpdater.exe";
+    QString program = "";
+#if Q_OS_WIN32
+    program = "CheckmateUpdater.exe";
+#else
+    program = "CheckmateUpdater";
+#endif
     QStringList args;
 
     QProcess *p = new QProcess(this);

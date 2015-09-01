@@ -4,12 +4,14 @@
 # Make (build)
 # Qt5 Base and Qt5 Webkit
 
-all: updater app
+# all: updater app
+
+all: app
 
 install:
 	mkdir /opt/checkmate
 	cp src/Checkmate /opt/checkmate/Checkmate
-	cp updater_src/CheckmateUpdater /opt/checkmate/CheckmateUpdater
+	# cp updater_src/CheckmateUpdater /opt/checkmate/CheckmateUpdater
 	ln -s /opt/checkmate/Checkmate /usr/bin/checkmate
 	cp checkmate.desktop /usr/share/applications/checkmate.desktop
 	cp src/gear.png /usr/share/icons/checkmate_icon.png
@@ -29,9 +31,9 @@ app:
 	make -C src
 
 clean:
-	make -C updater_src clean
+	# make -C updater_src clean
 	make -C src clean
 	rm src/Makefile
 	rm src/Checkmate
-	rm updater_src/Makefile
-	rm updater_src/CheckmateUpdater
+	# rm updater_src/Makefile
+	# rm updater_src/CheckmateUpdater

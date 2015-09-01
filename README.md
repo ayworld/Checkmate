@@ -24,18 +24,18 @@ To build in Linux, the Qt libraries are required. If you have the option to inst
 To compile checkmate, be sure that you have the build tools for your specific distribution, that includes make and g++
 
 Compile:
-```$ make -f Makefile.nix```
+```$ make```
 
 Clean up build process
-```$ make -f Makefile.nix clean```
+```$ make clean```
 
 Linux also has 2 other commands for the makefile, install and uninstall. Both require root, so be sure to run the install/uninstall commands as root
 
 Install:
-```$ make -f Makefile.nix && sudo make -f Makefile.nix install```
+```$ make && sudo make install```
 
 Uninstall:
-```$ make -f Makefile.nix uninstall```
+```$ make uninstall```
 
 ## Distro Install
 ### Arch

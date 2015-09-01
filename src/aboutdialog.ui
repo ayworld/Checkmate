@@ -9,19 +9,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>435</width>
+    <width>472</width>
     <height>300</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>425</width>
+    <width>472</width>
     <height>300</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>435</width>
+    <width>472</width>
     <height>300</height>
    </size>
   </property>
@@ -33,7 +33,7 @@
     <rect>
      <x>180</x>
      <y>20</y>
-     <width>231</width>
+     <width>281</width>
      <height>61</height>
     </rect>
    </property>
@@ -62,7 +62,7 @@ background-color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="bClose">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>390</x>
      <y>270</y>
      <width>75</width>
      <height>23</height>
@@ -90,7 +90,7 @@ background-color: rgb(255, 255, 255);</string>
     <rect>
      <x>180</x>
      <y>150</y>
-     <width>251</width>
+     <width>285</width>
      <height>111</height>
     </rect>
    </property>
@@ -121,7 +121,7 @@ background-color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="bSite">
    <property name="geometry">
     <rect>
-     <x>254</x>
+     <x>290</x>
      <y>270</y>
      <width>91</width>
      <height>23</height>
@@ -136,12 +136,12 @@ background-color: rgb(255, 255, 255);</string>
     <rect>
      <x>180</x>
      <y>80</y>
-     <width>231</width>
+     <width>281</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;© 2014 Kaleb Klein. All Rights Reserved.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;© 2015 Kaleb Klein. All Rights Reserved.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="wordWrap">
     <bool>true</bool>
