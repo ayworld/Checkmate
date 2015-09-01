@@ -5,4 +5,4 @@ Type=Application
 Terminal=false
 Icon=/usr/share/icons/checkmate_icon.png
 Exec=checkmate
-Categories=Utility;System;
+Categories=Utility;
