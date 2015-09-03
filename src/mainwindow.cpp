@@ -246,7 +246,7 @@ void MainWindow::onCompleted()
     {
         QMessageBox::StandardButton reply;
         QString upd = "";
-#if Q_OS_WIN32
+#ifdef Q_OS_WIN32
         upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2").arg(this->version).arg(lines[1]);
 #else
         upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2\n\nPlease make sure you're running Checkmate under super user (root)").arg(this->version).arg(lines[1]);
@@ -260,13 +260,13 @@ void MainWindow::onCompleted()
             downloader->setLabelText("Downloading and updating Checkmate, please wait...");
 
             #ifdef QT_DEBUG
-                #if Q_OS_WIN32
+                #ifdef Q_OS_WIN32
                     downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/CheckmateUpdater.exe");
                 #else
                     downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/CheckmateUpdater");
                 #endif
             #else
-                #if Q_OS_WIN32
+                #ifdef Q_OS_WIN32
                     downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
                 #else
                     downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater");
@@ -288,7 +288,7 @@ void MainWindow::onCompleted()
 void MainWindow::onUpdateComplete()
 {
     QString program = "";
-#if Q_OS_WIN32
+#ifdef Q_OS_WIN32
     program = "CheckmateUpdater.exe";
 #else
     program = "CheckmateUpdater";
