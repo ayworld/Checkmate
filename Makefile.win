@@ -16,16 +16,21 @@ ISSFLAGS=/ocheckmate_win32_bin\release /dSetupName=checkmate /dVersion=$(VERSION
 # Entire build process
 all: updater app installer
 
+install:
+	$(CMB)\release\checkmate_setup.exe
+
 # Entire build process minus the installer
 bins: updater app copy_dlls copy_binaries
 
+build-bat: updater app
+
 updater:
 	$(QMAKE) $(HOME)\updater_src\CheckmateUpdater.pro -o $(HOME)\updater_src\Makefile
-	$(MAKE) -e SHELL=$(SHELL) -C $(HOME)\updater_src
+	$(MAKE) -$(CMPL) -e SHELL=$(SHELL) -C $(HOME)\updater_src
 	
 app:
 	$(QMAKE) $(HOME)\src\Checkmate.pro -o $(HOME)\src\Makefile
-	$(MAKE) -e SHELL=$(SHELL) -C $(HOME)\src
+	$(MAKE) -$(CMPL) -e SHELL=$(SHELL) -C $(HOME)\src
 	
 installer: copy_binaries copy_dlls
 	$(ISS) checkmate_win32_bin\checkmate_setup.iss $(ISSFLAGS)
