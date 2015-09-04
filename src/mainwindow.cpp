@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->establishUIConnections();
     this->working = false;
-    this->lVersion = 16; // Important! This is the version checker!!!!!!!
-    this->version = "2.1.5";
+    this->lVersion = 17; // Important! This is the version checker!!!!!!!
+    this->version = "2.1.6";
     this->gversion = "2.1.2";
 }
 
@@ -39,9 +39,9 @@ void MainWindow::establishUIConnections()
     // Connect validate button
     connect(ui->bValidate, SIGNAL(clicked()), this, SLOT(onValidateButtonClicked()));
 
-#ifdef Q_OS_UNIX
-    ui->actionUpdates->setVisible(false);
-#endif
+//#ifdef Q_OS_UNIX
+//    ui->actionUpdates->setVisible(false);
+//#endif
 }
 
 void MainWindow::setHashType(QString ext)
@@ -248,10 +248,12 @@ void MainWindow::onCompleted()
         QString upd = "";
 #ifdef Q_OS_WIN32
         upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2").arg(this->version).arg(lines[1]);
-#else
-        upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2\n\nPlease make sure you're running Checkmate under super user (root)").arg(this->version).arg(lines[1]);
-#endif
         reply = QMessageBox::question(this, "New Update Available", upd, QMessageBox::Yes|QMessageBox::No);
+#else
+        upd = QString("An update is now available.\n\nCurrent Version: %1\nNew Version: %2\n\nTo update, use the package manager for your distribution, or build it from source").arg(this->version).arg(lines[1]);
+        reply = QMessageBox::information(this, "New Update Available", upd, QMessageBox::Ok);
+#endif
+
         if(reply == QMessageBox::Yes)
         {
             //QDesktopServices::openUrl(QString("http://www.kalebklein.com/applications/checkmate"));

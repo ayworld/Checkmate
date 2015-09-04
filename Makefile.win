@@ -22,6 +22,8 @@ install:
 # Entire build process minus the installer
 bins: updater app copy_dlls copy_binaries
 
+update: build-bat copy_binaries
+
 build-bat: updater app
 
 updater:
