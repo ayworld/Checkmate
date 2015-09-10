@@ -4,6 +4,9 @@
 # Make (build)
 # Qt5 Base and Qt5 Webkit
 
+QMAKE=qmake
+# QMAKE=/usr/lib/qt5/bin/qmake
+
 # all: updater app
 
 all: app
@@ -27,7 +30,7 @@ updater:
 	make -C updater_src
 
 app:
-	qmake src/Checkmate.pro -o src/Makefile
+	$(QMAKE) src/Checkmate.pro -o src/Makefile
 	make -C src
 
 clean:
