@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->establishUIConnections();
     this->working = false;
-    this->lVersion = 17; // Important! This is the version checker!!!!!!!
-    this->version = "2.1.6";
+    this->lVersion = 18; // Important! This is the version checker!!!!!!!
+    this->version = "2.2";
     this->gversion = "2.1.2";
 }
 
@@ -211,52 +211,39 @@ void MainWindow::onAboutActionTriggered()
 
 void MainWindow::onUpdateCheckActionTriggered()
 {
-    downloader = new FileDownloader(this);
-    downloader->setTitle("Check for Updates");
-    downloader->setLabelText("Checking for updates, please wait...             ");
-    downloader->setMarqueBar(true);
+    checker = new UpdateChecker(this);
+    connect(checker, SIGNAL(checkComplete(QString,QString)), this, SLOT(onCompleted(QString,QString)));
 
-    #ifdef QT_DEBUG
-        downloader->setURL("http://cdn.kalebklein.com/debug/chm/version.txt");
-    #else
-        downloader->setURL("http://cdn.kalebklein.com/chm/version.txt");
-    #endif
-
-    connect(downloader, SIGNAL(downloadFinished()), this, SLOT(onCompleted()));
-    connect(downloader, SIGNAL(connectionFailed()), this, SLOT(onConnectFailed()));
-
-    downloader->begin();
+    checker->setTitle("Check for Updates");
+    checker->setLabelText("Checking for updated, please wait...              ");
+    checker->setMarqueBar(true);
+#ifdef QT_DEBUG
+    checker->setUrl("http://cdn.kalebklein.com/chm/debug/update.json");
+#else
+    checker->setUrl("http://cdn.kalebklein.com/chm/update.json");
+#endif
+    checker->check();
 }
 
-void MainWindow::onCompleted()
+void MainWindow::onCompleted(QString version, QString versionCode)
 {
-    delete downloader;
-    QFile file("version.txt");
-    if(!file.open(QIODevice::ReadOnly)) return;
-    QTextStream stream(&file);
-    QStringList lines;
-    while(!stream.atEnd())
-    {
-        lines.append(stream.readLine());
-    }
-    file.close();
-
-    int wVersion = QString(lines[0]).toInt();
-    if(lVersion < wVersion) // Change back to < when done testing
+    int wVersion = versionCode.toInt();
+    if(lVersion < wVersion)
     {
         QMessageBox::StandardButton reply;
         QString upd = "";
+
 #ifdef Q_OS_WIN32
-        upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2").arg(this->version).arg(lines[1]);
+        upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2").arg(this->version).arg(version);
         reply = QMessageBox::question(this, "New Update Available", upd, QMessageBox::Yes|QMessageBox::No);
 #else
-        upd = QString("An update is now available.\n\nCurrent Version: %1\nNew Version: %2\n\nTo update, use the package manager for your distribution, or build it from source").arg(this->version).arg(lines[1]);
+        upd = QString("An update is now available.\n\nCurrent Version: %1\nNew Version: %2\n\nTo update, use the package manager for your distribution, or build it from source").arg(this->version).arg(version);
         reply = QMessageBox::information(this, "New Update Available", upd, QMessageBox::Ok);
 #endif
 
         if(reply == QMessageBox::Yes)
         {
-            //QDesktopServices::openUrl(QString("http://www.kalebklein.com/applications/checkmate"));
+            checker->close();
             downloader = new FileDownloader(this);
             downloader->setTitle("Downloading Update");
             downloader->setLabelText("Downloading and updating Checkmate, please wait...");
@@ -282,9 +269,9 @@ void MainWindow::onCompleted()
     }
     else
     {
+        checker->close();
         QMessageBox::information(this, "Check for Updates", "You are currently up to date!");
     }
-    file.remove();
 }
 
 void MainWindow::onUpdateComplete()

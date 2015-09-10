@@ -4,9 +4,8 @@ SHELL=C:/Windows/System32/cmd.exe
 VERSION=2.1.4
 
 PF=C:\Program Files (x86)
-HOME:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 QT=C:\Qt\5.4\mingw491_32\bin
-CMB=$(HOME)\checkmate_win32_bin
+CMB=checkmate_win32_bin
 
 QMAKE=$(QT)\qmake.exe
 MAKE=$(PF)\GnuWin32\bin\make.exe
@@ -27,12 +26,12 @@ update: build-bat copy_binaries
 build-bat: updater app
 
 updater:
-	$(QMAKE) $(HOME)\updater_src\CheckmateUpdater.pro -o $(HOME)\updater_src\Makefile
-	$(MAKE) -$(CMPL) -e SHELL=$(SHELL) -C $(HOME)\updater_src
+	$(QMAKE) updater_src\CheckmateUpdater.pro -o updater_src\Makefile
+	$(MAKE) -$(CMPL) -e SHELL=$(SHELL) -C updater_src
 	
 app:
-	$(QMAKE) $(HOME)\src\Checkmate.pro -o $(HOME)\src\Makefile
-	$(MAKE) -$(CMPL) -e SHELL=$(SHELL) -C $(HOME)\src
+	$(QMAKE) src\Checkmate.pro -o src\Makefile
+	$(MAKE) -$(CMPL) -e SHELL=$(SHELL) -C src
 	
 installer: copy_binaries copy_dlls
 	$(ISS) checkmate_win32_bin\checkmate_setup.iss $(ISSFLAGS)
@@ -55,8 +54,8 @@ copy_dlls:
 	copy /Y $(QT)\..\plugins\platforms\qwindows.dll checkmate_win32_bin\bin\platforms\qwindows.dll
 	
 clean:
-	$(MAKE) -e SHELL=$(SHELL) -C $(HOME)\updater_src clean
-	$(MAKE) -e SHELL=$(SHELL) -C $(HOME)\src clean
+	$(MAKE) -e SHELL=$(SHELL) -C updater_src clean
+	$(MAKE) -e SHELL=$(SHELL) -C src clean
 	if exist checkmate_win32_bin\bin\Checkmate.exe del checkmate_win32_bin\bin\Checkmate.exe
 	if exist checkmate_win32_bin\bin\CheckmateUpdater.exe del checkmate_win32_bin\bin\CheckmateUpdater.exe
 	if exist checkmate_win32_bin\bin\Qt5Core.dll del checkmate_win32_bin\bin\Qt5Core.dll

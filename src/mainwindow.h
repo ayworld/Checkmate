@@ -9,6 +9,7 @@
 #include "checksumgenerator.h"
 #include "aboutdialog.h"
 #include "filedownloader.h"
+#include "updatechecker.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +31,7 @@ private:
     bool working;
     int lVersion;
     QString version, gversion;
+    UpdateChecker *checker;
     FileDownloader *downloader;
     void setHashType(QString);
     int hashType;
@@ -47,7 +49,7 @@ private slots:
     void OpenChecksumGeneratorWindow();
     void onUpdateCheckActionTriggered();
 
-    void onCompleted();
+    void onCompleted(QString version, QString versionCode);
     void onUpdateComplete();
     void onConnectFailed();
 

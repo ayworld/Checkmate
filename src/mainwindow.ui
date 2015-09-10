@@ -143,19 +143,19 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
-     <string>Tools</string>
+     <string>&amp;Tools</string>
     </property>
     <addaction name="actionChecksum_Generator"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionUpdates"/>
     <addaction name="actionAbout"/>
@@ -171,22 +171,22 @@
   </widget>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>E&amp;xit</string>
    </property>
   </action>
   <action name="actionChecksum_Generator">
    <property name="text">
-    <string>Checksum Generator</string>
+    <string>&amp;Checksum Generator</string>
    </property>
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
    </property>
   </action>
   <action name="actionUpdates">
    <property name="text">
-    <string>Check for Updates</string>
+    <string>Check for &amp;Updates</string>
    </property>
   </action>
  </widget>
