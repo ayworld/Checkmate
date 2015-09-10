@@ -6,3 +6,5 @@ Terminal=false
 Icon=/usr/share/icons/checkmate_icon.png
 Exec=checkmate
 Categories=Utility;
+Comment=Validates file checksums for file integrety
+GenericName=File checksum validator
