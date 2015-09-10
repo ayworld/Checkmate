@@ -8,7 +8,7 @@
 #define VER_PRODUCTVERSION_STR      "2.1.6\0"
 
 #define VER_COMPANYNAME_STR         "Kaleb Klein"
-#define VER_FILEDESCRIPTION_STR     "Checkmate Checksum Validator"
+#define VER_FILEDESCRIPTION_STR     "File Checksum Validator"
 #define VER_INTERNALNAME_STR        "Checkmate"
 #define VER_LEGALCOPYRIGHT_STR      "Copyright (c) 2015 Kaleb Klein"
 #define VER_LEGALTRADEMARKS1_STR    "All Rights Reserved"

@@ -29,3 +29,4 @@ src/object_*
 src/Make*
 updater_src/Make*
 build.log
+/.project
