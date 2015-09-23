@@ -19,7 +19,12 @@ int main(int argc, char *argv[])
             if(upFile.exists())
                 upFile.remove();
 
-            QMessageBox::information(&w, "Up to Date", "You are now up to date!");
+            QMessageBox::StandardButton reply;
+            QMessageBox::question(&w, "Up to Date", "You are now up to date! Would you like to view the changelog?", QMessageBox::Yes|QMessageBox::No);
+            if(reply == QMessageBox::Yes)
+            {
+                QDesktopServices::openUrl(QString("http://kalebklein.com/portfolio/post/checkmate"));
+            }
         }
     }
 

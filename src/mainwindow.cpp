@@ -14,9 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->establishUIConnections();
     this->working = false;
-    this->lVersion = 18; // Important! This is the version checker!!!!!!!
-    this->version = "2.2";
+    this->lVersion = 19; // Important! This is the version checker!!!!!!!
+    this->version = "2.3";
     this->gversion = "2.1.2";
+	this->hashType = -1;
 }
 
 MainWindow::~MainWindow()
@@ -147,6 +148,24 @@ void MainWindow::onValidateButtonClicked()
     }
     else
     {
+		if(this->hashType == -1)
+        {
+            switch(hash.length())
+            {
+            case 32:
+                setHashType("md5");
+                break;
+            case 40:
+                setHashType("sha1");
+                break;
+            case 64:
+                setHashType("sha256");
+                break;
+            default:
+                setHashType("md5");
+            }
+        }
+		
         this->mThread->setFileLocation(file);
         this->mThread->setHashType(this->hashType);
         connect(mThread, SIGNAL(CalculationPerformed(QString)), this, SLOT(onCalculationPerformed(QString)));
@@ -181,6 +200,9 @@ void MainWindow::onCalculationPerformed(QString hash)
 
     // revert working to false
     this->working = false;
+	
+	// set hashType back to -1
+    this->hashType = -1;
 }
 
 void MainWindow::alert(QString title, QString message, bool critical)
