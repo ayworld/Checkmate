@@ -8,6 +8,7 @@ Homepage: http://kalebklein.com/portfolio/post/checkmate
 
 Package: checkmate
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: ${shlibs:Depends}, ${misc:Depends}, qt5-default
+Description: Cross Platform Checksum Validator
+ Validates checksums, with the ability to generate them too.
+ Supports MD5, SHA1, and SHA256 hashing algorithms.
