@@ -1,0 +1,61 @@
+#!/usr/bin/make -f
+
+lau = $(CURDIR)/checkmate.desktop
+bin = $(CURDIR)/Checkmate
+ico = $(CURDIR)/gear.png
+
+DEST1 = $(CURDIR)/debian/checkmate/opt/checkmate
+DEST2 = $(CURDIR)/debian/checkmate/usr/share/applications
+DEST3 = $(CURDIR)/debian/checkmate/usr/local/bin
+DEST4 = $(CURDIR)/debian/checkmate/usr/share/icons
+
+build: build-stamp
+
+build-stamp:
+	dh_testdir
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -rf build-stamp
+	dh_clean
+
+install: build clean $(lau) $(bin) $(ico)
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	
+	mkdir -m 755 -p $(DEST1)
+	mkdir -m 755 -p $(DEST2)
+	mkdir -m 755 -p $(DEST3)
+	mkdir -m 755 -p $(DEST4)
+	
+	install -m 777 $(lau) $(DEST2)
+	install -m 777 $(bin) $(DEST1)
+	install -m 777 $(bin) $(DEST3)
+	install -m 777 $(ico) $(DEST4)
+	
+	mv $(DEST3)/Checkmate $(DEST3)/checkmate
+	mv $(DEST4)/gear.png $(DEST4)/checkmate_icon.png
+	
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_installexamples
+	dh_installman
+	dh_link
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+	
+binary-arch: build install
+
+binary: binary-indep binary-arch
+
