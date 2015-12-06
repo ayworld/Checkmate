@@ -28,4 +28,4 @@ FORMS    += mainwindow.ui \
     checksumgenerator.ui
 
 RESOURCES += \
-    gear_icon_resource.qrc
+    qt_resource.qrc

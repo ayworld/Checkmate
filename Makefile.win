@@ -8,7 +8,7 @@ QT=C:\Qt\5.4\mingw491_32\bin
 CMB=checkmate_win32_bin
 
 QMAKE=$(QT)\qmake.exe
-MAKE=$(PF)\GnuWin32\bin\make.exe
+MAKE=C:\MinGW\bin\mingw32-make.exe
 ISS=$(PF)\Inno Setup 5\iscc.exe
 ISSFLAGS=/ocheckmate_win32_bin\release /dSetupName=checkmate /dVersion=$(VERSION) /dAppName=Checkmate
 

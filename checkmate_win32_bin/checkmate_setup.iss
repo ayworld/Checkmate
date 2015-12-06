@@ -131,7 +131,7 @@ Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\VclStylesinno
 Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\Styles\Amakrits.vsf"; DestDir: {#VCLStylesSkinPath};
 
 ; Rest of stuff
-Source: "bin\source.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: src
+;Source: "bin\source.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: src
 Source: "bin\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\libstdc++-6.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\libwinpthread-1.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app

@@ -1,10 +1,20 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QFile>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+
+    QFile f(":styles/qdarkstyle.css");
+    if(f.exists())
+    {
+       f.open(QFile::ReadOnly | QFile::Text);
+        QTextStream ts(&f);
+        qApp->setStyleSheet(ts.readAll());
+    }
+
     w.show();
 
     if(QCoreApplication::arguments().count() > 1)

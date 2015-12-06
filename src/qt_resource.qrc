@@ -3,4 +3,7 @@
         <file>gear.png</file>
         <file>gear.ico</file>
     </qresource>
+    <qresource prefix="/styles">
+        <file>qdarkstyle.css</file>
+    </qresource>
 </RCC>
