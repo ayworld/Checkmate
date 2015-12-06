@@ -33,7 +33,10 @@ if "%1" NEQ "" (
 :build
 title Building Checkmate...
 echo Building Checkmate...
-%MAKE% -f Makefile.win %THREADS% build-bat copy_dlls copy_binaries
+%MAKE% -f Makefile.win %THREADS% build-bat
+rem separating these two from the build. Causes it to fuck up for some reason
+rem when using multi-threading for compiling.
+%MAKE% -f Makefile.win copy_dlls copy_binaries
 
 :buildInstaller
 title Building installer...

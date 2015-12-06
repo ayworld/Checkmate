@@ -26,7 +26,7 @@
    <string>Checkmate Checksum Validator</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="gear_icon_resource.qrc">
+   <iconset resource="qt_resource.qrc">
     <normaloff>:/img/gear.png</normaloff>:/img/gear.png</iconset>
   </property>
   <property name="dockOptions">
@@ -192,7 +192,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="gear_icon_resource.qrc"/>
+  <include location="qt_resource.qrc"/>
  </resources>
  <connections/>
 </ui>

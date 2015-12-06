@@ -105,7 +105,7 @@ Source: "..\src\filedownloader.h"; DestDir: "{app}\src\Checkmate"; Flags: ignore
 Source: "..\src\main.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 Source: "..\src\gear.png"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 Source: "..\src\gear.ico"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
-Source: "..\src\gear_icon_resource.qrc"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\qt_resource.qrc"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 Source: "..\src\icon.rc"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 Source: "..\src\{#AppName}.pro"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 
