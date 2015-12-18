@@ -46,8 +46,8 @@ procedure UnLoadVCLStyles_UnInstall; external 'UnLoadVCLStyles@{#VCLStylesSkinPa
 
 function InitializeSetup(): Boolean;
 begin
- ExtractTemporaryFile('Amakrits.vsf');
- LoadVCLStyle(ExpandConstant('{tmp}\Amakrits.vsf'));
+ ExtractTemporaryFile('Glow.vsf');
+ LoadVCLStyle(ExpandConstant('{tmp}\Glow.vsf'));
  Result := True;
 end;
 
@@ -59,7 +59,7 @@ end;
 function InitializeUninstall: Boolean;
 begin
   Result := True;
-  LoadVCLStyle_UnInstall(ExpandConstant('{#VCLStylesSkinPath}\Amakrits.vsf'));
+  LoadVCLStyle_UnInstall(ExpandConstant('{#VCLStylesSkinPath}\Glow.vsf'));
 end;
 
 procedure DeinitializeUninstall();
@@ -128,7 +128,7 @@ Source: "..\updater_src\{#AppName}Updater.exe.manifest"; DestDir: "{app}\src\Che
 
 ; Styles
 Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\VclStylesinno.dll"; DestDir: {#VCLStylesSkinPath};
-Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\Styles\Amakrits.vsf"; DestDir: {#VCLStylesSkinPath};
+Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\Styles\Glow.vsf"; DestDir: {#VCLStylesSkinPath};
 
 ; Rest of stuff
 ;Source: "bin\source.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: src
