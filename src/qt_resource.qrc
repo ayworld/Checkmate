@@ -4,6 +4,9 @@
         <file>gear.ico</file>
     </qresource>
     <qresource prefix="/styles">
-        <file>qdarkstyle.css</file>
+        <file>flat.css</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>ubuntu.ttf</file>
     </qresource>
 </RCC>
