@@ -1,5 +1,5 @@
 Name:           checkmate
-Version:        2.3
+Version:        2.3.3
 Release:        1%{?dist}
 Summary:        Checksum generator and validator
 
@@ -28,10 +28,10 @@ mkdir -p %{buildroot}/opt/checkmate
 mkdir -p %{buildroot}%{_datadir}/applications
 mkdir -p %{buildroot}%{_datadir}/icons
 
-install -m 777 %{_builddir}/checkmate-2.3/src/Checkmate %{buildroot}%{_bindir}/checkmate
-install -m 777 %{_builddir}/checkmate-2.3/src/Checkmate %{buildroot}/opt/checkmate/Checkmate
-install -m 777 %{_builddir}/checkmate-2.3/src/gear.png %{buildroot}%{_datadir}/icons/checkmate_icon.png
-install -m 777 %{_builddir}/checkmate-2.3/checkmate.desktop %{buildroot}%{_datadir}/applications/checkmate.desktop
+install -m 777 %{_builddir}/checkmate-%{version}/src/Checkmate %{buildroot}%{_bindir}/checkmate
+install -m 777 %{_builddir}/checkmate-%{version}/src/Checkmate %{buildroot}/opt/checkmate/Checkmate
+install -m 777 %{_builddir}/checkmate-%{version}/src/gear.png %{buildroot}%{_datadir}/icons/checkmate_icon.png
+install -m 777 %{_builddir}/checkmate-%{version}/checkmate.desktop %{buildroot}%{_datadir}/applications/checkmate.desktop
 
 %files
 %doc
@@ -41,5 +41,7 @@ install -m 777 %{_builddir}/checkmate-2.3/checkmate.desktop %{buildroot}%{_datad
 /usr/share/applications/checkmate.desktop
 
 %changelog
+* Fri Jan 15 2016 Kaleb Klein <klein.jae@gmail.com> 2.3.3
+- New stylesheet
 * Sat Nov 14 2015 Kaleb Klein <klein.jae@gmail.com> 2.3-1
 - Initial package for RPM
