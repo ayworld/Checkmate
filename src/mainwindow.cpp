@@ -241,12 +241,20 @@ void MainWindow::onUpdateCheckActionTriggered()
     connect(checker, SIGNAL(checkComplete(QString,QString)), this, SLOT(onCompleted(QString,QString)));
 
     checker->setTitle("Check for Updates");
-    checker->setLabelText("Checking for updated, please wait...              ");
+    checker->setLabelText("Checking for updates, please wait...              ");
     checker->setMarqueBar(true);
 #ifdef QT_DEBUG
-    checker->setUrl("http://cdn.kalebklein.com/chm/debug/update.json");
+    #ifdef Q_OS_WIN32
+        checker->setUrl("http://cdn.kalebklein.com/chm/debug/update.json");
+    #else
+        checker->setUrl("http://cdn.kalebklein.com/chm/debug/update_linux.json");
+    #endif
 #else
-    checker->setUrl("http://cdn.kalebklein.com/chm/update.json");
+    #ifdef Q_OS_WIN32
+        checker->setUrl("http://cdn.kalebklein.com/chm/update.json");
+    #else
+        checker->setUrl("http://cdn.kalebklein.com/chm/update_linux.json");
+    #endif
 #endif
     checker->check();
 }
@@ -269,7 +277,7 @@ void MainWindow::onCompleted(QString version, QString versionCode)
             downloader->setLabelText("Downloading and updating Checkmate, please wait...");
 
 #ifdef QT_DEBUG
-            downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/CheckmateUpdater.exe");
+            downloader->setURL("http://cdn.kalebklein.com/chm/debug/updates/CheckmateUpdater.exe");
 #else
             downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
 #endif

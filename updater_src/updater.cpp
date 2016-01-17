@@ -21,7 +21,7 @@ void Updater::beginDownload()
     downloader->setLabelText("Updating, please wait...");
 
     #ifdef QT_DEBUG
-        downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/Checkmate.exe");
+        downloader->setURL("http://cdn.kalebklein.com/chm/debug/updates/Checkmate.exe");
     #else
         downloader->setURL("http://cdn.kalebklein.com/chm/updates/Checkmate.exe");
     #endif
