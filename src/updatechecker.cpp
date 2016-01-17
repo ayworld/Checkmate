@@ -39,7 +39,9 @@ void UpdateChecker::canceledCheck()
 {
     if(!autoClose)
     {
-        QMessageBox::information(0, "Update Canceled", "You have caceled the update check. Click \"Check for Updates\" again to retry.");
+        MsgBox msg(0, "Update Canceled", "You have caceled the update check. Click \"Check for Updates\" again to retry.");
+        msg.setIcon(MsgBox::IconError);
+        msg.exec();
     }
 }
 
@@ -69,7 +71,9 @@ void UpdateChecker::check()
     }
     else
     {
-        QMessageBox::critical(0, "Update Error", reply->errorString());
+        MsgBox msg(0, "Update Error", reply->errorString());
+        msg.setIcon(MsgBox::IconError);
+        msg.exec();
         delete reply;
         progress->close();
     }

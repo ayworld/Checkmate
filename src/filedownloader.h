@@ -4,7 +4,8 @@
 #include <QObject>
 #include <QtNetwork>
 #include <QProgressDialog>
-#include <QMessageBox>
+
+#include "msgbox.h"
 
 class FileDownloader : public QObject
 {

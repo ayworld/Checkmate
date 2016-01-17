@@ -5,7 +5,6 @@
 
 #include <QObject>
 #include <QProgressDialog>
-#include <QMessageBox>
 
 #include <QUrl>
 #include <QNetworkAccessManager>
@@ -14,6 +13,8 @@
 
 #include <QJsonDocument>
 #include <QJsonObject>
+
+#include "msgbox.h"
 
 class UpdateChecker : public QObject
 {

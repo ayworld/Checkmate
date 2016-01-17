@@ -33,9 +33,8 @@ void ChecksumGenerator::closeEvent(QCloseEvent *event)
 {
     if(this->working)
         {
-            QMessageBox::StandardButton reply;
-            reply = QMessageBox::question(this, "Close", "The generator is still hard at work, are you sure you want to exit?", QMessageBox::Yes|QMessageBox::No);
-            if(reply == QMessageBox::Yes)
+            MsgBox msg(this, "Close", "The generator is still hard at work, are you sure you want to exit?", MsgBox::YesNo, MsgBox::IconQuestion);
+            if(msg.exec() == MsgBox::Yes)
             {
                 event->accept();
             }
@@ -73,9 +72,17 @@ void ChecksumGenerator::onGenerateButtonClicked()
     QFile file(f);
 
     if(f.isEmpty())
-        QMessageBox::critical(0, "Error", "You need to supply a location!");
+    {
+        MsgBox msg(this, "Error", "You need to supply a location!");
+        msg.setIcon(MsgBox::IconError);
+        msg.exec();
+    }
     else if(!file.exists())
-        QMessageBox::critical(0, "Not Found", "That file cannot be found!");
+    {
+        MsgBox msg(this, "Not Found", "That file cannot be found!");
+        msg.setIcon(MsgBox::IconError);
+        msg.exec();
+    }
     else
     {
         this->mThread = new ValidationThread();
@@ -106,7 +113,9 @@ void ChecksumGenerator::onSaveButtonClicked()
     {
         QTextStream stream(&file);
         stream << ui->leFile->text() << "  " << fi.fileName();
-        QMessageBox::information(this, "Save Success", QString("The hash has been successfully saved to: %1").arg(fileName));
+        MsgBox msg(this, "Save Success", QString("The hash has been successfully saved to: %1").arg(fileName));
+        msg.setIcon(MsgBox::IconInfo);
+        msg.exec();
         ui->leFile->setText(f);
         ui->bSave->setEnabled(false);
     }
@@ -121,7 +130,9 @@ void ChecksumGenerator::onCalculationPerformed(QString hash)
     ui->bGenerate->setText("Generate Checksum");
     ui->leFile->setText(hash);
 
-    QMessageBox::information(0, "Success", "A new checksum has been successfully generated for you. You may copy it or save it as a hash file.");
+    MsgBox msg(this, "Success", "A new checksum has been successfully generated for you. You may copy it or save it as a hash file.");
+    msg.setIcon(MsgBox::IconInfo);
+    msg.exec();
     this->working = false;
 }
 

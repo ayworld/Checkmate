@@ -10,6 +10,7 @@
 #include "aboutdialog.h"
 #include "filedownloader.h"
 #include "updatechecker.h"
+#include "msgbox.h"
 
 namespace Ui {
 class MainWindow;

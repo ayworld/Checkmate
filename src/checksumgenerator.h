@@ -4,12 +4,12 @@
 #include <QMainWindow>
 #include <QFile>
 #include <QFileDialog>
-#include <QMessageBox>
 #include <QRect>
 #include <QDesktopWidget>
 #include <QCloseEvent>
 
 #include "validationthread.h"
+#include "msgbox.h"
 
 #define HASH_MD5        0x01
 #define HASH_SHA1       0x02

@@ -72,16 +72,16 @@ void FileDownloader::httpDownloadFinished()
     else if(reply->error())
     {
         file->remove();
-        QMessageBox::critical(0, "HTTP", tr("Download failed: %1.").arg(reply->errorString()));
+        MsgBox msg(0, "HTTP", tr("Download failed: %1").arg(reply->errorString()));
+        msg.setIcon(MsgBox::IconError);
+        msg.exec();
     }
     else if(!redirecTarget.isNull())
     {
         QUrl newUrl = url.resolved(redirecTarget.toUrl());
-        QMessageBox::StandardButton rep;
-        rep = QMessageBox::question(0, "HTTP",
-            tr("Redirect to %1?").arg(newUrl.toString()),
-            QMessageBox::Yes | QMessageBox::No);
-        if(rep == QMessageBox::Yes)
+        MsgBox msg(0, "HTTP", tr("Redirect to %1?").arg(newUrl.toString()),
+                   MsgBox::YesNo, MsgBox::IconQuestion);
+        if(msg.exec() == MsgBox::Yes)
         {
             url = newUrl;
             reply->deleteLater();
@@ -119,7 +119,9 @@ void FileDownloader::cancelDownload()
 {
     httpRequestAborted = true;
     reply->abort();
-    QMessageBox::information(0, "HTTP", "You have canceled the download. Click \"Check for Updates\" to retry.");
+    MsgBox msg(0, "HTTP", "You have canceled the download. Click \"Check for Updates\" to retry.");
+    msg.setIcon(MsgBox::IconInfo);
+    msg.exec();
 }
 
 void FileDownloader::setMarqueBar(bool marque)
@@ -151,7 +153,9 @@ void FileDownloader::begin()
     file = new QFile(fileName);
     if(!file->open(QIODevice::WriteOnly))
     {
-        QMessageBox::information(0, "ERROR", tr("Unable to save the file %1: %2").arg(fileName).arg(file->errorString()));
+        MsgBox msg(0, "ERROR", tr("Unable to save the file %1: %2").arg(fileName).arg(file->errorString()));
+        msg.setIcon(MsgBox::IconError);
+        msg.exec();
         delete file;
         file = 0;
         return;

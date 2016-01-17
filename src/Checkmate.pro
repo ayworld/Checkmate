@@ -13,7 +13,8 @@ SOURCES += main.cpp\
     aboutdialog.cpp \
     checksumgenerator.cpp \
     filedownloader.cpp \
-    updatechecker.cpp
+    updatechecker.cpp \
+    msgbox.cpp
 
 HEADERS  += mainwindow.h \
     validationthread.h \
@@ -21,7 +22,8 @@ HEADERS  += mainwindow.h \
     checksumgenerator.h \
     filedownloader.h \
     version.h \
-    updatechecker.h
+    updatechecker.h \
+    msgbox.h
 
 FORMS    += mainwindow.ui \
     aboutdialog.ui \

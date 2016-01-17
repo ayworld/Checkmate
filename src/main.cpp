@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "msgbox.h"
 #include <QApplication>
 #include <QFile>
 #include <QDesktopServices>
@@ -36,9 +37,8 @@ int main(int argc, char *argv[])
             if(upFile.exists())
                 upFile.remove();
 
-            QMessageBox::StandardButton reply;
-            QMessageBox::question(&w, "Up to Date", "You are now up to date! Would you like to view the changelog?", QMessageBox::Yes|QMessageBox::No);
-            if(reply == QMessageBox::Yes)
+            MsgBox msg(&w, "Up to Date", "You are now up to date! Would you like to view the changelog?", MsgBox::YesNo, MsgBox::IconQuestion);
+            if(msg.exec() == MsgBox::Yes)
             {
                 QDesktopServices::openUrl(QString("http://kalebklein.com/portfolio/post/checkmate"));
             }

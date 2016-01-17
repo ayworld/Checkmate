@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->establishUIConnections();
     this->working = false;
-    this->lVersion = 22; // Important! This is the version checker!!!!!!!
-    this->version = "2.3.3";
+    this->lVersion = 23; // Important! This is the version checker!!!!!!!
+    this->version = "2.3.4";
     this->gversion = "2.1.2";
 	this->hashType = -1;
 }
@@ -209,11 +209,15 @@ void MainWindow::alert(QString title, QString message, bool critical)
 {
     if(critical)
     {
-        QMessageBox::critical(0, title, message);
+        MsgBox msg(this, title, message);
+        msg.setIcon(MsgBox::IconError);
+        msg.exec();
     }
     else
     {
-        QMessageBox::information(0, title, message);
+        MsgBox msg(this, title, message);
+        msg.setIcon(MsgBox::IconInfo);
+        msg.exec();
     }
 }
 
@@ -252,47 +256,40 @@ void MainWindow::onCompleted(QString version, QString versionCode)
     int wVersion = versionCode.toInt();
     if(lVersion < wVersion)
     {
-        QMessageBox::StandardButton reply;
         QString upd = "";
-
 #ifdef Q_OS_WIN32
         upd = QString("An update is now available, would you like to update now?\n\nCurrent Version: %1\nNew Version: %2").arg(this->version).arg(version);
-        reply = QMessageBox::question(this, "New Update Available", upd, QMessageBox::Yes|QMessageBox::No);
-#else
-        upd = QString("An update is now available.\n\nCurrent Version: %1\nNew Version: %2\n\nTo update, use the package manager for your distribution, or build it from source").arg(this->version).arg(version);
-        reply = QMessageBox::information(this, "New Update Available", upd, QMessageBox::Ok);
-#endif
+        MsgBox msg(this, "New Update Available", upd, MsgBox::YesNo, MsgBox::IconQuestion);
 
-        if(reply == QMessageBox::Yes)
+        if(msg.exec() == MsgBox::Yes)
         {
             checker->close();
             downloader = new FileDownloader(this);
             downloader->setTitle("Downloading Update");
             downloader->setLabelText("Downloading and updating Checkmate, please wait...");
 
-            #ifdef QT_DEBUG
-                #ifdef Q_OS_WIN32
-                    downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/CheckmateUpdater.exe");
-                #else
-                    downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/CheckmateUpdater");
-                #endif
-            #else
-                #ifdef Q_OS_WIN32
-                    downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
-                #else
-                    downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater");
-                #endif
-            #endif
+#ifdef QT_DEBUG
+            downloader->setURL("http://cdn.kalebklein.com/debug/chm/updates/CheckmateUpdater.exe");
+#else
+            downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
+#endif
 
             connect(downloader, SIGNAL(downloadFinished()), this, SLOT(onUpdateComplete()));
 
             downloader->begin();
         }
+#else
+        upd = QString("An update is now available.\n\nCurrent Version: %1\nNew Version: %2\n\nTo update, use the package manager for your distribution, or build it from source").arg(this->version).arg(version);
+        MsgBox msg(this, "New Update Available", upd);
+        msg.exec();
+#endif
     }
     else
     {
         checker->close();
-        QMessageBox::information(this, "Check for Updates", "You are currently up to date!");
+        MsgBox msg(this, "Check for Updates", "You are currently up to date!");
+        msg.setIcon(MsgBox::IconInfo);
+        msg.exec();
     }
 }
 
@@ -313,7 +310,9 @@ void MainWindow::onUpdateComplete()
 
 void MainWindow::onConnectFailed()
 {
-    QMessageBox::information(this, "Connection Error", "An internet connection is required to check for updates.");
+    MsgBox msg(this, "Connection Error", "An internet connection is required to check for updates.");
+    msg.setIcon(MsgBox::IconError);
+    msg.exec();
 }
 
 // Used from actionExit to trigger closeEvent()
@@ -321,9 +320,8 @@ void MainWindow::onExitActionTriggered()
 {
     if(this->working)
     {
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Close", "Checkmate is still hard at work, are you sure you want to exit?", QMessageBox::Yes|QMessageBox::No);
-        if(reply == QMessageBox::Yes)
+        MsgBox msg(this, "Close", "Checkmate is still hard at work, are you sure you want to exit?", MsgBox::YesNo, MsgBox::IconQuestion);
+        if(msg.exec() == MsgBox::Yes)
         {
             QApplication::quit();
         }
@@ -339,9 +337,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     if(this->working)
     {
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Close", "Checkmate is still hard at work, are you sure you want to exit?", QMessageBox::Yes|QMessageBox::No);
-        if(reply == QMessageBox::Yes)
+        MsgBox msg(this, "Close", "Checkmate is still hard at work, are you sure you want to exit?", MsgBox::YesNo, MsgBox::IconQuestion);
+        if(msg.exec() == MsgBox::Yes)
         {
             qApp->quit();
         }
