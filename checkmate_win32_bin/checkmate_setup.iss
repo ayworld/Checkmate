@@ -20,6 +20,8 @@ WizardSmallImageFile=bin\gear.bmp
 WizardImageFile=bin\gear_big.bmp
 Compression=lzma
 SolidCompression=yes
+UninstallDisplayName={#AppName}
+UninstallDisplayIcon={app}\{#AppName}.exe
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
