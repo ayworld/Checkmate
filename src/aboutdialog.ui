@@ -54,7 +54,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/img/gear.png);
+    <string notr="true">image: url(:res/images/gear.png);
 border-color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);</string>
    </property>
@@ -141,7 +141,7 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;© 2015 Kaleb Klein. All Rights Reserved.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;© 2015-2016 Kaleb Klein. All Rights Reserved.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="wordWrap">
     <bool>true</bool>
