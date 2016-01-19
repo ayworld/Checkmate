@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
-    QFile f(":styles/flat.css");
+    QFile f(":res/styles/flat.css");
     if(f.exists())
     {
        f.open(QFile::ReadOnly | QFile::Text);
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
         qApp->setStyleSheet(ts.readAll());
     }
 
-    int id = QFontDatabase::addApplicationFont(":fonts/ubuntu.ttf");
+    int id = QFontDatabase::addApplicationFont(":res/fonts/ubuntu.ttf");
     QString fam = QFontDatabase::applicationFontFamilies(id).at(0);
     QFont ubuntu(fam);
     qApp->setFont(ubuntu);
