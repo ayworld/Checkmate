@@ -70,31 +70,70 @@ begin
 end;
 
 [Files]
+Source: "bin\{#AppName}.exe"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: app
+Source: "bin\platforms\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: app
+
+; ================
+; Source
+; ================
+
 
 ;;;;;;;;;;;;; Checkmate Source ;;;;;;;;;;;;;;
 
-Source: "..\src\*.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
-Source: "..\src\*.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
-Source: "..\src\*.ui"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+; about dialog
+Source: "..\src\aboutdialog.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: src
+Source: "..\src\aboutdialog.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\aboutdialog.ui"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+
+; checksum generator
+Source: "..\src\checksumgenerator.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\checksumgenerator.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\checksumgenerator.ui"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+
+; main window
+Source: "..\src\mainwindow.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\mainwindow.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\mainwindow.ui"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+
+; validation thread
+Source: "..\src\validationthread.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\validationthread.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+
+; Downloader
+Source: "..\src\filedownloader.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\filedownloader.h"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+
+; Extras
+Source: "..\src\main.cpp"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\gear.png"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\gear.ico"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 Source: "..\src\qt_resource.qrc"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
-Source: "..\src\Checkmate.pro"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
-Source: "..\src\res\*"; DestDir: "{app}\src\Checkmate\res"; Flags: ignoreversion recursesubdirs; Components: src
+Source: "..\src\icon.rc"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\src\{#AppName}.pro"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
 
 ;;;;;;;;;;;;; Checkmate Updater Source ;;;;;;;;;;;;;;
 
-Source: "..\updater_src\*.cpp"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
-Source: "..\updater_src\*.h"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
-Source: "..\updater_src\*.manifest"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+; Update dialog
+Source: "..\updater_src\updater.cpp"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+Source: "..\updater_src\updater.h"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+
+; File downloader
+Source: "..\updater_src\filedownloader.cpp"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+Source: "..\updater_src\filedownloader.h"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+
+; Extras
+Source: "..\updater_src\main.cpp"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
 Source: "..\updater_src\updater.qrc"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
 Source: "..\updater_src\updater.rc"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
-Source: "..\updater_src\CheckmateUpdater.pro"; DestDir: "{app}\src\Checkmate"; Flags: ignoreversion; Components: src
+Source: "..\updater_src\{#AppName}Updater.pro"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
+Source: "..\updater_src\{#AppName}Updater.exe.manifest"; DestDir: "{app}\src\CheckmateUpdater"; Flags: ignoreversion; Components: src
 
 ; Styles
-Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\VclStylesinno.dll"; DestDir: {#VCLStylesSkinPath}
-Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\Styles\Glow.vsf"; DestDir: {#VCLStylesSkinPath}
+Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\VclStylesinno.dll"; DestDir: {#VCLStylesSkinPath};
+Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\Styles\Glow.vsf"; DestDir: {#VCLStylesSkinPath};
 
 ; Rest of stuff
-Source: "bin\source.md"; DestDir: "{app}"; Flags: ignoreversion; Components: src
+;Source: "bin\source.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: src
 Source: "bin\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\libstdc++-6.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\libwinpthread-1.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
@@ -108,7 +147,6 @@ Source: "bin\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: a
 Source: "bin\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\Qt5Network.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-Source: "bin\platforms\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignoreversion recursesubdirs; Components: app
 
 [Icons]
 Name: "{group}\{#AppName}"; Filename: "{app}\{#AppName}.exe"
@@ -120,4 +158,5 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#AppName}"; Filen
 [Run]
 ;; Change folder permissions so Checkmate can remove update files
 Filename: "{sys}\icacls.exe"; Description: "Folder Permissions"; StatusMsg: "Changing Directory Permissions"; Parameters: """{app}"" /grant Users:F"; Flags: shellexec waituntilterminated 
-Filename: "{app}\{#AppName}"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{app}\{#AppName}"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+

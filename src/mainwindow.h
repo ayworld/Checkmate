@@ -11,7 +11,6 @@
 #include "filedownloader.h"
 #include "updatechecker.h"
 #include "msgbox.h"
-#include "refs.h"
 
 namespace Ui {
 class MainWindow;

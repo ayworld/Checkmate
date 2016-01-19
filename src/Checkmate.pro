@@ -5,7 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = Checkmate
 TEMPLATE = app
 
-RC_FILE = res/resource.rc
+RC_FILE = icon.rc
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -21,7 +21,7 @@ HEADERS  += mainwindow.h \
     aboutdialog.h \
     checksumgenerator.h \
     filedownloader.h \
-    refs.h \
+    version.h \
     updatechecker.h \
     msgbox.h
 
@@ -29,4 +29,5 @@ FORMS    += mainwindow.ui \
     aboutdialog.ui \
     checksumgenerator.ui
 
-RESOURCES += qt_resource.qrc
+RESOURCES += \
+    qt_resource.qrc

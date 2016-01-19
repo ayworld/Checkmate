@@ -60,15 +60,15 @@ void MsgBox::setIcon(QString type)
     QPixmap img;
     if(type == "info")
     {
-        img = QPixmap(":res/images/info.png");
+        img = QPixmap(":images/res/images/info.png");
     }
     else if(type == "critical")
     {
-        img = QPixmap(":res/images/critical.png");
+        img = QPixmap(":images/res/images/critical.png");
     }
     else if(type == "question")
     {
-        img = QPixmap(":res/images/question.png");
+        img = QPixmap(":images/res/images/question.png");
     }
 
     this->msgBox->setIconPixmap(img);
