@@ -51,7 +51,13 @@ goto end
 :runInstaller
 title Running installer...
 echo Running installer...
-%MAKE% -f Makefile.win install
+if exist "%CWD%checkmate_win32_bin\release\checkmate_setup.exe" (
+	%MAKE% -f Makefile.win install
+) else (
+	echo Installer not found, cannot install!
+	pause
+	exit
+)
 goto end
 
 :clean
