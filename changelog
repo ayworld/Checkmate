@@ -1,5 +1,5 @@
-checkmate (2.3.3) stable; urgency=low
+checkmate (2.3.5) unstable; urgency=low
 
-  * Updated stylesheet
+  * New MessageBox system and separated win32/linux update systems
 
- -- Kaleb Klein <klein.jae@gmail.com>  Thu, 14 Jan 2016 21:30:11 -0500
+ -- Kaleb Klein <kaleb@unknown>  Wed, 20 Jan 2016 20:30:16 -0500
