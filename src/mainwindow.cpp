@@ -185,7 +185,7 @@ void MainWindow::onValidateButtonClicked()
 
 void MainWindow::onCalculationPerformed(QString hash)
 {
-    if(ui->leHash->text() == hash)
+    if(ui->leHash->text().toLower() == hash)
     {
         this->alert("Success", "The file checksum is valid!");
         ui->statusBar->showMessage("Validation successful!");
