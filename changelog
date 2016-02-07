@@ -1,5 +1,5 @@
-checkmate (2.3.5) unstable; urgency=low
+checkmate (2.3.6) unstable; urgency=low
 
-  * New MessageBox system and separated win32/linux update systems
+  * Fixed validator to validate hashes with capital letters
 
- -- Kaleb Klein <kaleb@unknown>  Wed, 20 Jan 2016 20:30:16 -0500
+ -- Kaleb Klein <kaleb@unknown>  Sun, 07 Feb 2016 16:58:19 -0500
