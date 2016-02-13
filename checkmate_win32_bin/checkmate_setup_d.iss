@@ -94,10 +94,10 @@ Source: "bin\icuin53.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: a
 Source: "bin\icuuc53.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\license.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\{#AppName}.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-Source: "bin\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-Source: "bin\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-Source: "bin\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-Source: "bin\Qt5Network.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
+Source: "bin\Qt5Cored.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
+Source: "bin\Qt5Guid.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
+Source: "bin\Qt5Widgetsd.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
+Source: "bin\Qt5Networkd.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\platforms\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignoreversion recursesubdirs; Components: app
 
 [Icons]

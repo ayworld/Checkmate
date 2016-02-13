@@ -150,7 +150,7 @@ void FileDownloader::begin()
     if(fileName.isEmpty())
         fileName = "empty.txt";
 
-    file = new QFile(fileName);
+    file = new QFile(QString("%1/AppData/Local/Temp/%2").arg(QDir::homePath(), fileName));
     if(!file->open(QIODevice::WriteOnly))
     {
         MsgBox msg(0, "ERROR", tr("Unable to save the file %1: %2").arg(fileName).arg(file->errorString()));

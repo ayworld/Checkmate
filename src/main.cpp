@@ -2,6 +2,7 @@
 #include "msgbox.h"
 #include <QApplication>
 #include <QFile>
+#include <QDir>
 #include <QDesktopServices>
 #include <QFontDatabase>
 
@@ -9,6 +10,12 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+
+    QFile setup(QString("%1/AppData/Local/Temp/%2").arg(QDir::homePath(), "checkmate_setup.exe"));
+    if(setup.exists())
+    {
+        setup.remove();
+    }
 
     QFile f(":res/styles/flat.css");
     if(f.exists())
@@ -24,26 +31,6 @@ int main(int argc, char *argv[])
     qApp->setFont(ubuntu);
 
     w.show();
-
-    if(QCoreApplication::arguments().count() > 1)
-    {
-        QString arg = QCoreApplication::arguments().at(1);
-        if(arg == QString("/D") || arg == QString("/d"))
-        {
-            QFile oldFile("Checkmate.exe.old");
-            QFile upFile("CheckmateUpdater.exe");
-            if(oldFile.exists())
-                oldFile.remove();
-            if(upFile.exists())
-                upFile.remove();
-
-            MsgBox msg(&w, "Up to Date", "You are now up to date! Would you like to view the changelog?", MsgBox::YesNo, MsgBox::IconQuestion);
-            if(msg.exec() == MsgBox::Yes)
-            {
-                QDesktopServices::openUrl(QString("http://kalebklein.com/portfolio/post/checkmate"));
-            }
-        }
-    }
 
     return a.exec();
 }

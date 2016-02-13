@@ -51,7 +51,7 @@ private slots:
     void OpenChecksumGeneratorWindow();
     void onUpdateCheckActionTriggered();
 
-    void onCompleted(QString version, QString versionCode);
+    void onCompleted(QString version, QString versionCode, QString downloadLocation);
     void onUpdateComplete();
     void onConnectFailed();
 

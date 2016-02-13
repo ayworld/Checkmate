@@ -35,17 +35,34 @@ if "%1" NEQ "" (
 )
 
 :build
+if "%1" EQU "-v" (
+	set VERSION=%2
+) else (
+	if "%3" NEQ "" (
+		set VERSION=%4
+	) else (
+		set /p VERSION="What's the version? "
+	)
+)
 title Building Checkmate...
 echo Building Checkmate...
 %MAKE% -f Makefile.win %THREADS% -e DEBUG=%DEBUG% build-bat
 rem separating these two from the build. Causes it to fuck up for some reason
 rem when using multi-threading for compiling.
-%MAKE% -f Makefile.win copy_dlls copy_binaries
+if "%DEBUG%" EQU "debug" (
+	%MAKE% -f Makefile.win copy_dlls_d copy_binaries_d
+) else (
+	%MAKE% -f Makefile.win copy_dlls copy_binaries
+)
 
 :buildInstaller
 title Building installer...
 echo Building installer...
-%MAKE% -f Makefile.win installer
+if "%DEBUG%" NEQ "" (
+	%MAKE% -f Makefile.win installer_d -e VERSION=%VERSION% -e BUILD=_debug
+) else (
+	%MAKE% -f Makefile.win installer -e VERSION=%VERSION%
+)
 goto end
 
 :runInstaller
@@ -77,6 +94,7 @@ echo -i - Force Compiles installer (By default, make.bat builds installer when b
 echo -f - Force rebuild of checkmate and installer
 echo -c - Cleans up checkmate binaries
 echo -r - Runs the installer
+echo -d - Builds a debug version
 echo.
 pause
 exit

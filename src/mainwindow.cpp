@@ -238,7 +238,7 @@ void MainWindow::onAboutActionTriggered()
 void MainWindow::onUpdateCheckActionTriggered()
 {
     checker = new UpdateChecker(this);
-    connect(checker, SIGNAL(checkComplete(QString,QString)), this, SLOT(onCompleted(QString,QString)));
+    connect(checker, SIGNAL(checkComplete(QString,QString,QString)), this, SLOT(onCompleted(QString,QString,QString)));
 
     checker->setTitle("Check for Updates");
     checker->setLabelText("Checking for updates, please wait...              ");
@@ -259,7 +259,7 @@ void MainWindow::onUpdateCheckActionTriggered()
     checker->check();
 }
 
-void MainWindow::onCompleted(QString version, QString versionCode)
+void MainWindow::onCompleted(QString version, QString versionCode, QString downloadLocation)
 {
     int wVersion = versionCode.toInt();
     if(lVersion < wVersion)
@@ -276,11 +276,13 @@ void MainWindow::onCompleted(QString version, QString versionCode)
             downloader->setTitle("Downloading Update");
             downloader->setLabelText("Downloading and updating Checkmate, please wait...");
 
-#ifdef QT_DEBUG
-            downloader->setURL("http://cdn.kalebklein.com/chm/debug/updates/CheckmateUpdater.exe");
-#else
-            downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
-#endif
+//#ifdef QT_DEBUG
+//            downloader->setURL("http://cdn.kalebklein.com/chm/debug/updates/CheckmateUpdater.exe");
+//#else
+//            downloader->setURL("http://cdn.kalebklein.com/chm/updates/CheckmateUpdater.exe");
+//#endif
+
+            downloader->setURL(downloadLocation);
 
             connect(downloader, SIGNAL(downloadFinished()), this, SLOT(onUpdateComplete()));
 
@@ -305,15 +307,22 @@ void MainWindow::onUpdateComplete()
 {
     QString program = "";
 #ifdef Q_OS_WIN32
-    program = "CheckmateUpdater.exe";
+//    program = "CheckmateUpdater.exe";
+#ifdef _DEBUG
+    program = QString("%1/AppData/Local/Temp/%2").arg(QDir::homePath(), "checkmate_debug_setup.exe");
+#else
+    program = QString("%1/AppData/Local/Temp/%2").arg(QDir::homePath(), "checkmate_setup.exe");
+#endif
 #else
     program = "CheckmateUpdater";
 #endif
     QStringList args;
+    QString arg = "/CLOSEAPPLICATIONS,/RESTARTAPPLICATIONS,/SILENT";
+    args = arg.split(",");
 
     QProcess *p = new QProcess(this);
     p->startDetached(program, args);
-    qApp->quit();
+//    qApp->quit();
 }
 
 void MainWindow::onConnectFailed()

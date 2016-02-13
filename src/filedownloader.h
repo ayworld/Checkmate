@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QtNetwork>
 #include <QProgressDialog>
+#include <QDir>
 
 #include "msgbox.h"
 

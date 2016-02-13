@@ -5,6 +5,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = Checkmate
 TEMPLATE = app
 
+CONFIG(debug, release|debug):DEFINES += _DEBUG
+
 RC_FILE = res/resource.rc
 
 SOURCES += main.cpp\

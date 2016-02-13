@@ -65,7 +65,8 @@ void UpdateChecker::check()
         QJsonObject json = jDoc.object();
 
         emit checkComplete(json["version"].toString(),
-                json["versionCode"].toString());
+                json["versionCode"].toString(),
+                json["downloadLocation"].toString());
 
         delete reply;
     }

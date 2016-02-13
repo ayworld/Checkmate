@@ -37,7 +37,8 @@ private:
 
 signals:
     void checkComplete(QString version,
-                       QString versionCode);
+                       QString versionCode,
+                       QString downloadLocation);
 public slots:
     void canceledCheck();
 
