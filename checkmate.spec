@@ -1,5 +1,5 @@
 Name:           checkmate
-Version:        2.3.6
+Version:        2.3.7
 Release:        1%{?dist}
 Summary:        Checksum generator and validator
 
@@ -41,6 +41,8 @@ install -m 777 %{_builddir}/checkmate-%{version}/checkmate.desktop %{buildroot}%
 /usr/share/applications/checkmate.desktop
 
 %changelog
+* Fri Feb 12 2016 Kaleb Klein <klein.jae@gmail.com> 2.3.7
+- Reworked update for Windows.
 * Sun Feb 07 2016 Kaleb Klein <klein.jae@gmail.com> 2.3.6
 - Fixed validator to accept hashes with capital characters
 * Wed Jan 20 2016 Kaleb Klein <klein.jae@gmail.com> 2.3.5
