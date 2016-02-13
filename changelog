@@ -1,5 +1,5 @@
-checkmate (2.3.6) unstable; urgency=low
+checkmate (2.3.7) unstable; urgency=low
 
-  * Fixed validator to validate hashes with capital letters
+  * Reworked update for Windows.
 
- -- Kaleb Klein <kaleb@unknown>  Sun, 07 Feb 2016 16:58:19 -0500
+ -- Kaleb Klein <kaleb@unknown>  Fri, 12 Feb 2016 19:50:03 -0500

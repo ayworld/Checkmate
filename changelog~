@@ -1,5 +1,0 @@
-checkmate (2.3.5) unstable; urgency=low
-
-  * New MessageBox system and separated win32/linux update systems
-
- -- Kaleb Klein <kaleb@unknown>  Wed, 20 Jan 2016 20:30:16 -0500
