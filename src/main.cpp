@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
-    QFile setup(QString("%1/AppData/Local/Temp/%2").arg(QDir::homePath(), "checkmate_setup.exe"));
+    QFile setup(QString("%1/AppData/Local/%2").arg(QDir::homePath(), "checkmate_setup.exe"));
     if(setup.exists())
     {
         setup.remove();

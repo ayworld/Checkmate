@@ -309,9 +309,9 @@ void MainWindow::onUpdateComplete()
 #ifdef Q_OS_WIN32
 //    program = "CheckmateUpdater.exe";
 #ifdef _DEBUG
-    program = QString("%1/AppData/Local/Temp/%2").arg(QDir::homePath(), "checkmate_debug_setup.exe");
+    program = QString("%1/AppData/Local/%2").arg(QDir::homePath(), "checkmate_debug_setup.exe");
 #else
-    program = QString("%1/AppData/Local/Temp/%2").arg(QDir::homePath(), "checkmate_setup.exe");
+    program = QString("%1/AppData/Local/%2").arg(QDir::homePath(), "checkmate_setup.exe");
 #endif
 #else
     program = "CheckmateUpdater";
