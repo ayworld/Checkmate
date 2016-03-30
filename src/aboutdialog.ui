@@ -62,9 +62,9 @@ background-color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="bClose">
    <property name="geometry">
     <rect>
-     <x>390</x>
+     <x>374</x>
      <y>270</y>
-     <width>75</width>
+     <width>91</width>
      <height>23</height>
     </rect>
    </property>
@@ -121,7 +121,7 @@ background-color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="bSite">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>230</x>
      <y>270</y>
      <width>141</width>
      <height>23</height>

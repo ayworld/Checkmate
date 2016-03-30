@@ -14,10 +14,9 @@ all: app
 install:
 	mkdir /opt/checkmate
 	cp src/Checkmate /opt/checkmate/Checkmate
-	# cp updater_src/CheckmateUpdater /opt/checkmate/CheckmateUpdater
 	ln -s /opt/checkmate/Checkmate /usr/bin/checkmate
 	cp checkmate.desktop /usr/share/applications/checkmate.desktop
-	cp src/gear.png /usr/share/icons/checkmate_icon.png
+	cp src/res/images/gear.png /usr/share/icons/checkmate_icon.png
 
 uninstall:
 	rm -rf /opt/checkmate
