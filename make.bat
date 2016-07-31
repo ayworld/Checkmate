@@ -2,7 +2,7 @@
 color 0A
 rem Handle paths
 
-set QT=C:\Qt\5.4\mingw491_32\bin
+set QT=C:\Qt\5.6\mingw49_32\bin
 set MINGW=C:\MinGW\bin
 set MAKE=%MINGW%\mingw32-make.exe
 set PATH=%MINGW%;%QT%;%PATH%

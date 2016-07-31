@@ -85,13 +85,7 @@ Source: "C:\Program Files (x86)\The Road To Delphi\VCL Styles Inno\Styles\Glow.v
 
 ; Rest of stuff
 Source: "bin\source.md"; DestDir: "{app}"; Flags: ignoreversion; Components: src
-Source: "bin\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-Source: "bin\libstdc++-6.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-Source: "bin\libwinpthread-1.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\gear.ico"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-Source: "bin\icudt54.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-Source: "bin\icuin54.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
-Source: "bin\icuuc54.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\license.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\{#AppName}.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: "bin\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: app

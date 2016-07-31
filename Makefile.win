@@ -2,7 +2,7 @@
 SHELL=C:/Windows/System32/cmd.exe
 
 PF=C:\Program Files (x86)
-QT=C:\Qt\5.4\mingw491_32\bin
+QT=C:\Qt\5.6\mingw49_32\bin
 CMB=checkmate_win32_bin
 
 QMAKE=$(QT)\qmake.exe
@@ -37,6 +37,9 @@ installer: copy_binaries copy_dlls
 installer_d: copy_binaries_d copy_dlls_d
 	$(ISS) checkmate_win32_bin\checkmate_setup_d.iss $(ISSFLAGS)
 
+installer_msvc:
+	$(ISS) checkmate_win32_bin\checkmate_setup-msvc.iss $(ISSFLAGS)
+
 copy_binaries:
 	copy /Y src\release\Checkmate.exe checkmate_win32_bin\bin\Checkmate.exe
 
@@ -48,9 +51,9 @@ copy_dlls:
 	copy /Y $(QT)\Qt5Gui.dll checkmate_win32_bin\bin\Qt5Gui.dll
 	copy /Y $(QT)\Qt5Network.dll checkmate_win32_bin\bin\Qt5Network.dll
 	copy /Y $(QT)\Qt5Widgets.dll checkmate_win32_bin\bin\Qt5Widgets.dll
-	copy /Y $(QT)\icudt53.dll checkmate_win32_bin\bin\icudt53.dll
-	copy /Y $(QT)\icuin53.dll checkmate_win32_bin\bin\icuin53.dll
-	copy /Y $(QT)\icuuc53.dll checkmate_win32_bin\bin\icuuc53.dll
+	copy /Y $(QT)\icudt54.dll checkmate_win32_bin\bin\icudt54.dll
+	copy /Y $(QT)\icuin54.dll checkmate_win32_bin\bin\icuin54.dll
+	copy /Y $(QT)\icuuc54.dll checkmate_win32_bin\bin\icuuc54.dll
 	copy /Y $(QT)\libgcc_s_dw2-1.dll checkmate_win32_bin\bin\libgcc_s_dw2-1.dll
 	copy /Y "$(QT)\libstdc++-6.dll" "checkmate_win32_bin\bin\libstdc++-6.dll"
 	copy /Y "$(QT)\libwinpthread-1.dll" "checkmate_win32_bin\bin\libwinpthread-1.dll"
@@ -61,9 +64,9 @@ copy_dlls_d:
 	copy /Y $(QT)\Qt5Guid.dll checkmate_win32_bin\bin\Qt5Guid.dll
 	copy /Y $(QT)\Qt5Networkd.dll checkmate_win32_bin\bin\Qt5Networkd.dll
 	copy /Y $(QT)\Qt5Widgetsd.dll checkmate_win32_bin\bin\Qt5Widgetsd.dll
-	copy /Y $(QT)\icudt53.dll checkmate_win32_bin\bin\icudt53.dll
-	copy /Y $(QT)\icuin53.dll checkmate_win32_bin\bin\icuin53.dll
-	copy /Y $(QT)\icuuc53.dll checkmate_win32_bin\bin\icuuc53.dll
+	copy /Y $(QT)\icudt54.dll checkmate_win32_bin\bin\icudt54.dll
+	copy /Y $(QT)\icuin54.dll checkmate_win32_bin\bin\icuin54.dll
+	copy /Y $(QT)\icuuc54.dll checkmate_win32_bin\bin\icuuc54.dll
 	copy /Y $(QT)\libgcc_s_dw2-1.dll checkmate_win32_bin\bin\libgcc_s_dw2-1.dll
 	copy /Y "$(QT)\libstdc++-6.dll" "checkmate_win32_bin\bin\libstdc++-6.dll"
 	copy /Y "$(QT)\libwinpthread-1.dll" "checkmate_win32_bin\bin\libwinpthread-1.dll"
@@ -81,9 +84,9 @@ clean:
 	if exist checkmate_win32_bin\bin\Qt5Guid.dll del checkmate_win32_bin\bin\Qt5Guid.dll
 	if exist checkmate_win32_bin\bin\Qt5Networkd.dll del checkmate_win32_bin\bin\Qt5Networkd.dll
 	if exist checkmate_win32_bin\bin\Qt5Widgetsd.dll del checkmate_win32_bin\bin\Qt5Widgetsd.dll
-	if exist checkmate_win32_bin\bin\icudt53.dll del checkmate_win32_bin\bin\icudt53.dll
-	if exist checkmate_win32_bin\bin\icuin53.dll del checkmate_win32_bin\bin\icuin53.dll
-	if exist checkmate_win32_bin\bin\icuuc53.dll del checkmate_win32_bin\bin\icuuc53.dll
+	if exist checkmate_win32_bin\bin\icudt54.dll del checkmate_win32_bin\bin\icudt54.dll
+	if exist checkmate_win32_bin\bin\icuin54.dll del checkmate_win32_bin\bin\icuin54.dll
+	if exist checkmate_win32_bin\bin\icuuc54.dll del checkmate_win32_bin\bin\icuuc54.dll
 	if exist checkmate_win32_bin\bin\libgcc_s_dw2-1.dll del checkmate_win32_bin\bin\libgcc_s_dw2-1.dll
 	if exist checkmate_win32_bin\bin\libstdc++-6.dll del checkmate_win32_bin\bin\libstdc++-6.dll
 	if exist checkmate_win32_bin\bin\libwinpthread-1.dll del checkmate_win32_bin\bin\libwinpthread-1.dll
