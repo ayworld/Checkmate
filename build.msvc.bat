@@ -5,7 +5,7 @@ color 0A
 rem build env. applications
 rem please change according to your setup
 set CWD=%~dp0
-set QT=C:\Qt\5.6\msvc2013\bin
+set QT=C:\Qt\5.5\msvc2013\bin
 set MINGW=C:\MinGW\bin
 set MAKE=%MINGW%\mingw32-make.exe
 set VCPATH=C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC

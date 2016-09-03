@@ -245,13 +245,13 @@ void MainWindow::onUpdateCheckActionTriggered()
     checker->setMarqueBar(true);
 #ifdef QT_DEBUG
     #ifdef Q_OS_WIN32
-        checker->setUrl("http://cdn.kalebklein.com/chm/debug/update.json");
+        checker->setUrl("http://cdn.kalebklein.com/chm/debug/update24.json");
     #else
         checker->setUrl("http://cdn.kalebklein.com/chm/debug/update_linux.json");
     #endif
 #else
     #ifdef Q_OS_WIN32
-        checker->setUrl("http://cdn.kalebklein.com/chm/update.json");
+        checker->setUrl("http://cdn.kalebklein.com/chm/update24.json");
     #else
         checker->setUrl("http://cdn.kalebklein.com/chm/update_linux.json");
     #endif
