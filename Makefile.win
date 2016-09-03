@@ -2,7 +2,7 @@
 SHELL=C:/Windows/System32/cmd.exe
 
 PF=C:\Program Files (x86)
-QT=C:\Qt\5.6\mingw49_32\bin
+QT=C:\Qt\5.5\mingw49_32\bin
 CMB=checkmate_win32_bin
 
 QMAKE=$(QT)\qmake.exe

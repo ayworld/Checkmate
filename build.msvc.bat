@@ -29,7 +29,7 @@ if "%1" NEQ "" (
 	)
 )
 
-if exist bin\win32\KPF.exe goto clean
+if exist checkmate_win32_bin\bin\Checkmate.exe goto clean
 
 :build
 echo.
